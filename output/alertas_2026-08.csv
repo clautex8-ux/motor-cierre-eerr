@@ -1,0 +1,4 @@
+CodigoProyecto,Proyecto,LineaDeNegocio,Cliente,Provision,FacturadoNeto,TipoAlerta,Monto,Responsable,Severidad,Estado,Mes
+PY_20101,Cobranza Temprana Banco A,Cobranza,Banco A,256341567.0,272448564.0,Facturado mayor a provision,16106997.0,Control de Gestion,Alta,Pendiente,2026-08
+PY_50103,Off-Shore Upselling Telco H,Off-Shore,Telco H,160388756.0,173005168.0,Facturado mayor a provision,12616412.0,Control de Gestion,Alta,Pendiente,2026-08
+PY_50106,Off-Shore Outbound Peru Telco H,Off-Shore,Telco H,75662417.0,73436626.0,Nota de credito no provisionada,-2430321.0,Comercial,Media,Pendiente,2026-08

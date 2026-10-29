@@ -1,0 +1,6 @@
+CodigoProyecto,Proyecto,LineaDeNegocio,Cliente,Provision,FacturadoNeto,TipoAlerta,Monto,Responsable,Severidad,Estado,Mes
+PY_50102,Off-Shore Cobranza Telco H,Off-Shore,Telco H,230961055.0,0.0,Provision sin factura,-230961055.0,Facturacion,Alta,Pendiente,2026-07
+PY_30101,ATC Tarjeta Retail D,Vtas_ATC,Retail D,261788323.0,245237127.0,Facturado menor a provision,-16551196.0,Facturacion,Alta,Pendiente,2026-07
+PY_40104,Ventas Seguros Banco E,Vtas_Servicios,Banco E,84479323.0,77553381.0,Facturado menor a provision,-6925942.0,Facturacion,Media,Pendiente,2026-07
+PY_30104,ATC Seguros B,Vtas_ATC,Seguros B,79909769.0,77540994.0,Nota de credito no provisionada,-2067008.0,Comercial,Media,Pendiente,2026-07
+PY_10104,BPO Validacion Retail D,BPO,Retail D,61860010.0,60504420.0,Nota de credito no provisionada,-1733292.0,Comercial,Baja,Pendiente,2026-07

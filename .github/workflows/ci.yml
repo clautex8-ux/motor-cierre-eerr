@@ -1,0 +1,33 @@
+name: CI motor de cierre EERR
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  pruebas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+      - name: Revisar estilo (ruff)
+        run: ruff check src tests
+      - name: Pruebas de calidad y cuadratura (pytest)
+        run: python -m pytest -q
+      - name: Corrida de humo del cierre
+        env:
+          PYTHONPATH: src
+        run: |
+          python -m motor.pipeline --mes 2026-09
+          python -m motor.kpis
+      - name: Publicar EERR de la corrida de humo
+        uses: actions/upload-artifact@v4
+        with:
+          name: eerr-distribuido
+          path: output/EERR_Distribuido_2026-09.xlsx

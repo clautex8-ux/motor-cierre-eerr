@@ -1,0 +1,12 @@
+Nivel,KPI,Valor,Meta,Cumple,Fuente
+IL3,"% de filas con proyecto, línea y cuenta válidos",0.9989,"≥ 99,5%",Sí,promedio de corridas
+IL3,Diferencia de cuadratura origen vs. distribuido ($),0.0,$0,Sí,máximo de corridas
+IL3,Filas corregidas automáticamente por mes,11.8333,informativo,—,promedio
+IL4,% de ejecuciones mensuales sin error,1.0,≥ 99%,Sí,6 de 6 corridas
+IL4,Tiempo de ejecución por cierre (segundos),6.5133,< 60 s,Sí,promedio
+IL4,Meses cerrados con el motor,6.0,1 por mes,Sí,acumulado
+IL5,Horas de cierre por mes (línea base manual),40.0,—,—,declarado
+IL5,Horas de cierre por mes con el motor,16.0,≤ 16 h,Pendiente,meta (pendiente de medición)
+IL5,Horas ahorradas por mes,24.0,≥ 24 h,Pendiente,meta (pendiente de medición)
+IL5,Aumento de productividad del cierre,0.6,≥ 60%,Pendiente,horas ahorradas / horas base
+IL5,"Diferencias provisión vs. facturación detectadas ($, acumulado)",1805715289.0,informativo,—,37 alertas

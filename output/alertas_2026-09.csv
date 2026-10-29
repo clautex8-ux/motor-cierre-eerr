@@ -1,0 +1,4 @@
+CodigoProyecto,Proyecto,LineaDeNegocio,Cliente,Provision,FacturadoNeto,TipoAlerta,Monto,Responsable,Severidad,Estado,Mes
+PY_20103,Cobranza Leasing Banco E,Cobranza,Banco E,156056613.0,136460206.0,Facturado menor a provision,-19596407.0,Facturacion,Alta,Pendiente,2026-09
+PY_20101,Cobranza Temprana Banco A,Cobranza,Banco A,260690217.0,244483442.0,Facturado menor a provision,-16206775.0,Facturacion,Alta,Pendiente,2026-09
+PY_20105,Cobranza Telco F,Cobranza,Telco F,136421399.0,121058107.0,Facturado menor a provision,-15363292.0,Facturacion,Alta,Pendiente,2026-09

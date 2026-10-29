@@ -1,0 +1,89 @@
+# ------------------------------------------------------------------
+# Reglas de negocio del Motor de Cierre EERR
+# Cualquier cambio en estos parámetros queda versionado en Git.
+# ------------------------------------------------------------------
+
+# Esquema de entrada: las 27 columnas del extracto EERR del ERP
+columnas_base:
+  - Account
+  - Codigo
+  - Mes
+  - CuentaContable
+  - EERR
+  - Clasificacion
+  - Type
+  - TransactionID
+  - Fecha
+  - DocumentNumber
+  - Nombre
+  - Memo
+  - Debit
+  - Credit
+  - Saldo
+  - NombreDelProyecto
+  - CustomerJob
+  - DepartamentoGciaNombre
+  - LineaDeNegocio
+  - Memo1
+  - SubsidiariaNombre
+  - CodigoProyecto
+  - Proyecto
+  - Cliente
+  - Cross1
+  - Cross 2
+  - Tabla
+
+formato_csv:
+  separador: ";"
+  encoding: "latin1"
+
+lineas_productivas:
+  - BPO
+  - Cobranza
+  - Vtas_ATC
+  - Vtas_Servicios
+  - Off-Shore
+
+linea_staff: STAFF
+
+rubro_ingresos: "Ingresos De Explotacion"
+
+# Rubros que componen el resultado antes de impuesto (RAI)
+rubros_rai:
+  - Ingresos De Explotacion
+  - Costos Del Personal
+  - Costos Operacionales
+  - Gastos Generales Fijos
+  - Costos Offshore Operacional
+  - OH Latam
+  - No Operacional
+
+# Criterios válidos para distribuir filas STAFF (columna Tabla)
+criterios_staff:
+  - Ingresos Local
+  - Ingresos Local + Offshore
+  - Ingresos Offshore
+  - FTE
+
+# Cargos calculados por proyecto
+oh_latam:
+  tasa: 0.03            # OH Latam = -3% de los ingresos del proyecto
+  rubro: OH Latam
+  cuenta: Asesorias Profesionales Holding_LATAM
+
+impuesto_renta:
+  tasa: 0.27            # Impuesto = -27% del RAI del proyecto
+  rubro: Impuestos a la Renta
+  cuenta: Impuesto Renta Corriente
+
+# Umbrales de alerta provisión vs. facturación
+alertas:
+  tolerancia_pct: 0.02        # diferencia relativa tolerada
+  tolerancia_monto: 500000    # diferencia mínima en CLP para alertar
+
+# Línea base para KPI IL5 (proceso manual)
+linea_base_manual:
+  dias_habiles_cierre: 5
+  horas_por_dia: 8
+meta_motor:
+  dias_habiles_cierre: 2

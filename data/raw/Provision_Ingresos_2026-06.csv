@@ -1,0 +1,24 @@
+MES,CAMPANA,PAIS,UN,PROVISION
+2026-06,BPO Back Office Banco A,CHL,BPO,210091238.0
+2026-06,BPO Digitalizacion Seguros B,CHL,BPO,122945775.0
+2026-06,BPO Digital Prendas FinC,CHL,BPO,164643223.0
+2026-06,BPO Validacion Retail D,CHL,BPO,65208604.0
+2026-06,Cobranza Temprana Banco A,CHL,Cobranza,218788648.0
+2026-06,Cobranza Judicial Financiera C,CHL,Cobranza,88705245.0
+2026-06,Cobranza Unidad Leasing E,CHL,Cobranza,152568034.0
+2026-06,Cobranza Castigo Retail D,CHL,Cobranza,82629173.0
+2026-06,Cobranza Telco F,CHL,Cobranza,131383096.0
+2026-06,ATC Tarjeta D ventas,CHL,Vtas_ATC,274666395.0
+2026-06,ATC Retenciones Telco F,CHL,Vtas_ATC,185447912.0
+2026-06,ATC Compra Cartera Retail D,CHL,Vtas_ATC,72848575.0
+2026-06,ATC Seguros B,CHL,Vtas_ATC,92358268.0
+2026-06,Venta Inbound Fijo F,CHL,Vtas_Servicios,240126771.0
+2026-06,Ventas Outbound Telco F,CHL,Vtas_Servicios,176953191.0
+2026-06,Ventas Web Fijo Telco G,CHL,Vtas_Servicios,102455739.0
+2026-06,Ventas Seguros Banco E,CHL,Vtas_Servicios,78556448.0
+2026-06,Offshore Telco Retenciones H COL,COL,Off-Shore,261900859.0
+2026-06,Offshore Telco Cobranza H COL,COL,Off-Shore,221300444.0
+2026-06,Off-Shore Upselling Telco H,COL,Off-Shore,159278665.0
+2026-06,Off-Shore Back Office Telco F,COL,Off-Shore,121996585.0
+2026-06,Offshore Blip Mensajeria H,COL,Off-Shore,94992344.0
+2026-06,Off-Shore Outbound Peru Telco H,COL,Off-Shore,73478611.0

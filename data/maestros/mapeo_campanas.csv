@@ -1,0 +1,24 @@
+CAMPANA,CodigoProyecto,Proyecto
+BPO Back Office Banco A,PY_10101,BPO Back Office Banco A
+BPO Digitalizacion Seguros B,PY_10102,BPO Digitalizacion Seguros B
+BPO Digital Prendas FinC,PY_10103,BPO Prendas Financiera C
+BPO Validacion Retail D,PY_10104,BPO Validacion Retail D
+Cobranza Temprana Banco A,PY_20101,Cobranza Temprana Banco A
+Cobranza Judicial Financiera C,PY_20102,Cobranza Judicial Financiera C
+Cobranza Unidad Leasing E,PY_20103,Cobranza Leasing Banco E
+Cobranza Castigo Retail D,PY_20104,Cobranza Castigo Retail D
+Cobranza Telco F,PY_20105,Cobranza Telco F
+ATC Tarjeta D ventas,PY_30101,ATC Tarjeta Retail D
+ATC Retenciones Telco F,PY_30102,ATC Retenciones Telco F
+ATC Compra Cartera Retail D,PY_30103,ATC Compra Cartera Retail D
+ATC Seguros B,PY_30104,ATC Seguros B
+Venta Inbound Fijo F,PY_40101,Ventas Inbound Telco F
+Ventas Outbound Telco F,PY_40102,Ventas Outbound Telco F
+Ventas Web Fijo Telco G,PY_40103,Ventas Web Fijo Telco G
+Ventas Seguros Banco E,PY_40104,Ventas Seguros Banco E
+Offshore Telco Retenciones H COL,PY_50101,Off-Shore Retenciones Telco H
+Offshore Telco Cobranza H COL,PY_50102,Off-Shore Cobranza Telco H
+Off-Shore Upselling Telco H,PY_50103,Off-Shore Upselling Telco H
+Off-Shore Back Office Telco F,PY_50104,Off-Shore Back Office Telco F
+Offshore Blip Mensajeria H,PY_50105,Off-Shore Mensajeria Telco H
+Off-Shore Outbound Peru Telco H,PY_50106,Off-Shore Outbound Peru Telco H

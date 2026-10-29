@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<style>
+  body{margin:0;font-family:Carlito,Calibri,Arial,sans-serif;background:#fff;color:#1F2430}
+  .wrap{width:1280px;padding:28px 32px}
+  h1{font-size:28px;margin:0 0 4px;color:#2B3990}
+  .sub{font-size:17px;color:#6B7080;margin-bottom:20px}
+  .capa{display:grid;grid-template-columns:190px 1fr;gap:16px;margin-bottom:12px;align-items:stretch}
+  .tag{background:#2B3990;color:#fff;border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;justify-content:center}
+  .tag b{font-size:20px}.tag span{font-size:14px;opacity:.85;margin-top:2px}
+  .fila{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .box{border:1.5px solid #C9CCD6;border-radius:10px;padding:12px 14px;background:#fff}
+  .box b{display:block;font-size:18px;color:#1F2430}
+  .box span{font-size:14.5px;color:#6B7080;line-height:1.3}
+  .proc .box{background:#F3F4FA}
+  .proc .box.key{border:2.5px solid #F06B9E;background:#FDEEF4}
+  .flecha{text-align:center;color:#F06B9E;font-size:22px;line-height:18px;margin:-2px 0 8px 206px}
+  .mant{display:grid;grid-template-columns:190px 1fr;gap:16px;margin-top:6px}
+  .mant .tag{background:#F06B9E}
+  .mant .box{background:#F8F9FB;font-size:15.5px;color:#1F2430}
+  .num{display:inline-block;background:#1CADE4;color:#fff;border-radius:50%;width:22px;height:22px;text-align:center;font-size:14px;line-height:22px;margin-right:6px}
+</style></head><body><div class="wrap">
+<h1>Motor de cierre EERR: de bases manuales a un EERR distribuido y auditado</h1>
+<div class="sub">Arquitectura del producto de datos según las 7 capas · corre una vez por cierre mensual</div>
+
+<div class="capa"><div class="tag"><b><span class="num">2</span>Entradas</b><span>ERP + maestros</span></div>
+ <div class="fila">
+  <div class="box"><b>Base EERR del ERP</b><span>CSV mensual, 27 columnas, ~6.400 filas (sintético)</span></div>
+  <div class="box"><b>Provisión de ingresos</b><span>Monto provisionado por campaña</span></div>
+  <div class="box"><b>Facturación ERP</b><span>Facturas y notas de crédito por proyecto</span></div>
+  <div class="box"><b>Maestros y reglas</b><span>Proyectos, FTE, mapeo de campañas, reglas.yaml</span></div>
+ </div></div>
+<div class="flecha">▼</div>
+
+<div class="capa proc"><div class="tag"><b><span class="num">3</span>Procesamiento</b><span>Python · pandas</span></div>
+ <div class="fila">
+  <div class="box"><b>1 · Extraer</b><span>Lee y valida estructura; falla si falta una columna</span></div>
+  <div class="box"><b>2 · Validar (IL3)</b><span>7 reglas de calidad; corrige o envía a cuarentena</span></div>
+  <div class="box key"><b>3 · Distribuir</b><span>Gerencias, STAFF por criterio, OH 3%, impuesto 27% RAI; cuadratura = $0</span></div>
+  <div class="box"><b>4 · Alertar</b><span>Concilia provisión vs. facturación; severidad y responsable</span></div>
+ </div></div>
+<div class="flecha">▼</div>
+
+<div class="capa"><div class="tag"><b><span class="num">4</span>Salidas</b><span>output/ · logs/</span></div>
+ <div class="fila">
+  <div class="box"><b>EERR distribuido</b><span>Excel formato IBR: resumen, proyecto, detalle</span></div>
+  <div class="box"><b>Tabla Power BI</b><span>Hechos por movimiento para el informe EERR</span></div>
+  <div class="box"><b>Alertas de fuga</b><span>Lista priorizada por monto y severidad</span></div>
+  <div class="box"><b>Registro de ejecución</b><span>Estado, tiempos, calidad y cuadratura por corrida</span></div>
+ </div></div>
+<div class="flecha">▼</div>
+
+<div class="capa"><div class="tag"><b><span class="num">5</span>Consumo</b><span>quién decide</span></div>
+ <div class="fila">
+  <div class="box"><b>Control de Gestión</b><span>Cierra el mes y revisa cuarentena y cuadratura</span></div>
+  <div class="box"><b>Gerencia de Finanzas</b><span>Decide por margen de campaña y línea</span></div>
+  <div class="box"><b>Facturación / Comercial</b><span>Emite o corrige facturas alertadas</span></div>
+  <div class="box"><b>Directorio</b><span>Recibe el EERR mensual sin rearmarlo a mano</span></div>
+ </div></div>
+
+<div class="mant"><div class="tag"><b><span class="num" style="background:#2B3990">6</span>Mantenimiento</b><span>cómo se sostiene</span></div>
+ <div class="box">CI en GitHub Actions (lint + 16 pruebas + corrida de humo) · reglas versionadas en Git · log por corrida · dueño: Control de Gestión</div></div>
+</div></body></html>

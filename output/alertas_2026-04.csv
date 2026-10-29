@@ -1,0 +1,10 @@
+CodigoProyecto,Proyecto,LineaDeNegocio,Cliente,Provision,FacturadoNeto,TipoAlerta,Monto,Responsable,Severidad,Estado,Mes
+PY_20103,Cobranza Leasing Banco E,Cobranza,Banco E,137857031.0,0.0,Provision sin factura,-137857031.0,Facturacion,Alta,Pendiente,2026-04
+PY_20101,Cobranza Temprana Banco A,Cobranza,Banco A,225292965.0,212975516.0,Facturado menor a provision,-12317449.0,Facturacion,Alta,Pendiente,2026-04
+PY_30101,ATC Tarjeta Retail D,Vtas_ATC,Retail D,249433291.0,236087645.0,Nota de credito no provisionada,-12295250.0,Comercial,Alta,Pendiente,2026-04
+PY_10101,BPO Back Office Banco A,BPO,Banco A,206745532.0,216780940.0,Facturado mayor a provision,10035408.0,Control de Gestion,Alta,Pendiente,2026-04
+PY_40102,Ventas Outbound Telco F,Vtas_Servicios,Telco F,157556944.0,167434881.0,Facturado mayor a provision,9877937.0,Control de Gestion,Media,Pendiente,2026-04
+PY_20102,Cobranza Judicial Financiera C,Cobranza,Financiera C,102263948.0,93797284.0,Nota de credito no provisionada,-4326107.0,Comercial,Media,Pendiente,2026-04
+PY_20102,Cobranza Judicial Financiera C,Cobranza,Financiera C,102263948.0,93797284.0,Facturado menor a provision,-4140557.0,Facturacion,Media,Pendiente,2026-04
+PY_10104,BPO Validacion Retail D,BPO,Retail D,57841528.0,61389600.0,Facturado mayor a provision,3548072.0,Control de Gestion,Media,Pendiente,2026-04
+PY_40104,Ventas Seguros Banco E,Vtas_Servicios,Banco E,72141017.0,70066904.0,Nota de credito no provisionada,-2010975.0,Comercial,Media,Pendiente,2026-04

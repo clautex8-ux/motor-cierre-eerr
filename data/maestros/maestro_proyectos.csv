@@ -1,0 +1,35 @@
+CodigoProyecto,Proyecto,LineaDeNegocio,Cliente,Cross1,FTE,IngresoBaseMM,Tipo
+PY_10101,BPO Back Office Banco A,BPO,Banco A,Local,62,210,Proyecto
+PY_10102,BPO Digitalizacion Seguros B,BPO,Seguros B,Local,38,120,Proyecto
+PY_10103,BPO Prendas Financiera C,BPO,Financiera C,Local,45,175,Proyecto
+PY_10104,BPO Validacion Retail D,BPO,Retail D,Local,21,64,Proyecto
+PY_20101,Cobranza Temprana Banco A,Cobranza,Banco A,Local,80,240,Proyecto
+PY_20102,Cobranza Judicial Financiera C,Cobranza,Financiera C,Local,34,98,Proyecto
+PY_20103,Cobranza Leasing Banco E,Cobranza,Banco E,Local,52,150,Proyecto
+PY_20104,Cobranza Castigo Retail D,Cobranza,Retail D,Local,29,80,Proyecto
+PY_20105,Cobranza Telco F,Cobranza,Telco F,Local,47,130,Proyecto
+PY_30101,ATC Tarjeta Retail D,Vtas_ATC,Retail D,Local,95,260,Proyecto
+PY_30102,ATC Retenciones Telco F,Vtas_ATC,Telco F,Local,70,190,Proyecto
+PY_30103,ATC Compra Cartera Retail D,Vtas_ATC,Retail D,Local,26,72,Proyecto
+PY_30104,ATC Seguros B,Vtas_ATC,Seguros B,Local,33,88,Proyecto
+PY_40101,Ventas Inbound Telco F,Vtas_Servicios,Telco F,Local,88,230,Proyecto
+PY_40102,Ventas Outbound Telco F,Vtas_Servicios,Telco F,Local,64,165,Proyecto
+PY_40103,Ventas Web Fijo Telco G,Vtas_Servicios,Telco G,Local,41,105,Proyecto
+PY_40104,Ventas Seguros Banco E,Vtas_Servicios,Banco E,Local,30,82,Proyecto
+PY_50101,Off-Shore Retenciones Telco H,Off-Shore,Telco H,Off-Shore,110,300,Proyecto
+PY_50102,Off-Shore Cobranza Telco H,Off-Shore,Telco H,Off-Shore,85,220,Proyecto
+PY_50103,Off-Shore Upselling Telco H,Off-Shore,Telco H,Off-Shore,60,160,Proyecto
+PY_50104,Off-Shore Back Office Telco F,Off-Shore,Telco F,Off-Shore,44,115,Proyecto
+PY_50105,Off-Shore Mensajeria Telco H,Off-Shore,Telco H,Off-Shore,36,92,Proyecto
+PY_50106,Off-Shore Outbound Peru Telco H,Off-Shore,Telco H,Off-Shore,28,70,Proyecto
+PY_19000,Gerencia BPO,BPO,Interno,Local,0,0,Gerencia
+PY_29000,Gerencia Cobranza,Cobranza,Interno,Local,0,0,Gerencia
+PY_39000,Gerencia ATC,Vtas_ATC,Interno,Local,0,0,Gerencia
+PY_49000,Gerencia Ventas Servicios,Vtas_Servicios,Interno,Local,0,0,Gerencia
+PY_59000,Gerencia Off-Shore,Off-Shore,Interno,Local,0,0,Gerencia
+PY_90001,Administracion y Finanzas,STAFF,Interno,Local,0,0,STAFF
+PY_90002,Tecnologia Corporativa,STAFF,Interno,Local,0,0,STAFF
+PY_90003,Personas y Remuneraciones,STAFF,Interno,Local,0,0,STAFF
+PY_90004,Gerencia General,STAFF,Interno,Local,0,0,STAFF
+PY_90005,Calidad y Procesos Locales,STAFF,Interno,Local,0,0,STAFF
+PY_90006,Soporte Off-Shore,STAFF,Interno,Local,0,0,STAFF
