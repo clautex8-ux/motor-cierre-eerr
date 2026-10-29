@@ -90,7 +90,7 @@ def tiempos(ej):
     ax.set_xlabel("Segundos promedio por cierre")
     ax.grid(axis="y", visible=False)
     _titulo(ax, f"IL4 · Un cierre completo corre en {ej['DuracionSeg'].mean():.1f} s".replace(".", ","),
-            "La escritura del Excel formateado es el 95% del tiempo")
+            "La escritura del Excel formateado es el 97% del tiempo")
     fig.savefig(IMG / "il4_tiempos.png")
     plt.close(fig)
 
