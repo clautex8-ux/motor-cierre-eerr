@@ -10,8 +10,9 @@ Fuentes:
 
 El IL5 principal es el impacto en rentabilidad: cada punto de margen operativo que el
 comité recupera en un proyecto equivale al 1% de los ingresos de ese proyecto en
-utilidad antes de impuesto. La métrica es el margen operativo (antes de OH Latam, no
-operacional e impuesto) porque es lo que la gerencia del proyecto controla.
+utilidad antes de impuesto; la base son los proyectos de la lista del comité, no la
+cartera. La métrica es el margen operativo (antes de OH Latam, no operacional e
+impuesto) porque es lo que la gerencia del proyecto controla.
 
 Uso:
     python -m motor.kpis
@@ -31,7 +32,6 @@ def calcular_kpis() -> pd.DataFrame:
     if "Corte" not in ej.columns:
         ej["Corte"] = "Cierre"
     ok = ej[ej["Estado"] == "OK"]
-    cierres = ok[ok["Corte"] == "Cierre"]
     cortes = ok[ok["Corte"] == "Q1"]
 
     def _leer(patron):
@@ -39,10 +39,10 @@ def calcular_kpis() -> pd.DataFrame:
         return pd.concat([pd.read_csv(p) for p in rutas], ignore_index=True) if rutas else pd.DataFrame()
     comite = _leer("comite_rentabilidad_*_Q1.csv")
     precision = _leer("precision_proyeccion_*.csv")
-    resumenes = _leer("resumen/resumen_cierre_*.csv")
-    ing_mes = resumenes["Ingresos De Explotacion"].sum() / cierres["Mes"].nunique() if len(resumenes) else 0
-    utilidad_por_punto = ing_mes * 0.01
     ultimo = comite[comite["Mes"] == comite["Mes"].max()] if len(comite) else comite
+    # Base del IL5: los ingresos de los proyectos que el comité puede mover, no la cartera completa
+    ing_comite = ultimo["Ingresos De Explotacion"].sum() if len(ultimo) else 0
+    utilidad_por_punto = ing_comite * 0.01
 
     seg_c = LOGS / "seguimiento_comite.csv"
     interv = pd.read_csv(seg_c) if seg_c.exists() else pd.DataFrame()
@@ -80,8 +80,10 @@ def calcular_kpis() -> pd.DataFrame:
          "≤ 5 pp", (precision["ErrorPP"].abs().mean() <= 5) if len(precision) else None, "proyección vs. cierre"),
         ("IL4", "Acierto al clasificar proyectos bajo margen operativo mínimo", precision["Acierto"].mean() if len(precision) else 0,
          "≥ 85%", (precision["Acierto"].mean() >= 0.85) if len(precision) else None, "proyección vs. cierre"),
-        ("IL5", "Utilidad por punto de margen operativo de la cartera ($/mes)", utilidad_por_punto, "informativo", True,
-         "1% de los ingresos mensuales"),
+        ("IL5", "Utilidad por punto de margen operativo en los proyectos del comité ($/mes)", utilidad_por_punto,
+         "informativo", True, f"1% de sus ingresos ({len(ultimo)} proyectos)"),
+        ("IL5", "Utilidad por décima de punto en los proyectos del comité ($/mes)", utilidad_por_punto / 10,
+         "informativo", True, "0,1% de sus ingresos"),
         ("IL5", "Proyectos bajo margen operativo mínimo en la última proyección", len(ultimo), "informativo", True,
          f"corte {ultimo['Mes'].max() if len(ultimo) else '-'} Q1"),
         ("IL5", "Utilidad en juego en la última proyección ($)", ultimo["UtilidadEnJuego"].sum() if len(ultimo) else 0,

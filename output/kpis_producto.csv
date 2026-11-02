@@ -7,7 +7,8 @@ IL4,Tiempo de ejecución por corrida (segundos),4.555,< 60 s,Sí,promedio
 IL4,Proyecciones quincenales entregadas,6.0,1 por mes,Sí,acumulado
 IL4,Error medio de la proyección de margen operativo (pp),3.3312,≤ 5 pp,Sí,proyección vs. cierre
 IL4,Acierto al clasificar proyectos bajo margen operativo mínimo,0.9565,≥ 85%,Sí,proyección vs. cierre
-IL5,Utilidad por punto de margen operativo de la cartera ($/mes),34223523.6883,informativo,—,1% de los ingresos mensuales
+IL5,Utilidad por punto de margen operativo en los proyectos del comité ($/mes),3101190.64,informativo,—,1% de sus ingresos (4 proyectos)
+IL5,Utilidad por décima de punto en los proyectos del comité ($/mes),310119.064,informativo,—,"0,1% de sus ingresos"
 IL5,Proyectos bajo margen operativo mínimo en la última proyección,4.0,informativo,—,corte 2026-10 Q1
 IL5,Utilidad en juego en la última proyección ($),36980100.0,informativo,—,brecha a margen objetivo × ingresos
 IL5,Puntos de margen operativo recuperados en proyectos intervenidos (pp),0.0,≥ 3 pp,Pendiente,pendiente de medición

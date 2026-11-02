@@ -174,18 +174,25 @@ def precision(ej):
     plt.close(fig)
 
 
-def utilidad_por_punto(ing_mes):
+def utilidad_por_punto(ruta_comite):
+    """Utilidad mensual adicional según los puntos de margen operativo que recuperen los proyectos del comité."""
+    k = pd.read_csv(ruta_comite)
+    ing = k["Ingresos De Explotacion"].sum()
     fig, ax = plt.subplots(figsize=(6.6, 3.2))
-    puntos = [1, 2, 3, 5]
-    vals = [p * ing_mes * 0.01 * 12 / 1e6 for p in puntos]
-    ax.bar([f"+{p} pp" for p in puntos], vals, color=[CELESTE, NAVY, NAVY, NAVY], width=0.55)
+    puntos = [0.5, 1, 2, 3]
+    vals = [p * ing * 0.01 / 1e6 for p in puntos]
+    ax.bar([f"+{str(p).replace('.', ',')} pp" for p in puntos], vals, color=[CELESTE, NAVY, NAVY, ROSA], width=0.55)
     for i, v in enumerate(vals):
-        ax.text(i, v + 8, f"${v:,.0f} MM".replace(",", "."), ha="center", fontsize=12, color=TINTA)
-    ax.set_ylim(0, max(vals) * 1.2)
-    ax.set_ylabel("Utilidad adicional anual (MM CLP)")
+        ax.text(i, v + 0.2, f"${v:,.1f} MM".replace(".", "X").replace(",", ".").replace("X", ","), ha="center", fontsize=12, color=TINTA)
+    ax.set_ylim(0, max(vals) * 1.32)
+    ax.set_ylabel("Utilidad adicional al mes (MM CLP)")
     ax.grid(axis="x", visible=False)
-    _titulo(ax, "IL5 · Cada punto de margen operativo de la cartera vale " + mm(ing_mes * 0.01) + " al mes",
-            f"Utilidad antes de impuesto sobre ingresos mensuales de {mm(ing_mes)} (datos sintéticos); anualizado ×12")
+    ax.text(3, max(vals) * 1.17, "meta IL5 (≥ 3 pp)", color=ROSA, ha="center", fontsize=10)
+    mes = k["Mes"].iloc[0]
+    _titulo(ax, f"IL5 · Un punto de margen operativo en los {len(k)} proyectos del comité vale "
+            + f"${ing * 0.01 / 1e6:,.1f} MM al mes".replace(".", ","),
+            f"Ingresos de esos proyectos: {mm(ing).replace('$', '')}/mes (corte Q1 {MESES.get(mes, mes)}); una décima de punto = "
+            + f"{ing * 0.001 / 1e6:,.2f} MM".replace(".", ",") + " (datos sintéticos)")
     fig.savefig(IMG / "il5_utilidad_por_punto.png")
     plt.close(fig)
 
@@ -204,8 +211,7 @@ def main():
     comites = sorted(glob.glob(str(RAIZ / "output" / "comite_rentabilidad_*_Q1.csv")))
     comite(comites[-1])
     precision(ej)
-    res = pd.concat([pd.read_csv(p) for p in sorted(glob.glob(str(RAIZ / "output" / "resumen" / "resumen_cierre_*.csv")))])
-    utilidad_por_punto(res["Ingresos De Explotacion"].sum() / ej["Mes"].nunique())
+    utilidad_por_punto(comites[-1])
     print("Gráficos en", IMG)
 
 

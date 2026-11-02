@@ -128,7 +128,8 @@ Las filas en cuarentena quedan en la hoja `Cuarentena` del Excel con su motivo, 
 
 **Lógica del IL5.** El margen es resultado ÷ ingresos, así que cada punto de margen operativo que un proyecto mejora,
 sea bajando costos (dotación, horas extra, mix) o subiendo tarifa, equivale al 1% de sus ingresos en utilidad adicional
-antes de impuesto; sobre la cartera completa, un punto vale 1% de los ingresos mensuales. El comité registra en
+antes de impuesto. La base es la lista del comité, no la cartera: en el corte de octubre los 4 proyectos facturan
+$310 MM/mes, así que un punto vale $3,1 MM al mes y una décima de punto $0,31 MM. El comité registra en
 `logs/seguimiento_comite.csv` los proyectos intervenidos, su margen operativo proyectado y el real del cierre siguiente;
 `motor.kpis` calcula los puntos recuperados y la utilidad generada, y marca el KPI como *Pendiente* mientras no haya
 cierres posteriores a la intervención.
