@@ -47,8 +47,9 @@ def calcular_kpis() -> pd.DataFrame:
     seg_c = LOGS / "seguimiento_comite.csv"
     interv = pd.read_csv(seg_c) if seg_c.exists() else pd.DataFrame()
     medidos = interv[interv.get("MargenOperativoRealPosterior").notna()] if len(interv) else interv
-    puntos_rec = (medidos["MargenOperativoRealPosterior"] - medidos["MargenOperativoProyectado"]).mean() * 100 if len(medidos) else None
-    utilidad_rec = ((medidos["MargenOperativoRealPosterior"] - medidos["MargenOperativoProyectado"]) * medidos["Ingresos"]).sum() if len(medidos) else None
+    mejora = (medidos["MargenOperativoRealPosterior"] - medidos["MargenOperativoProyectado"]) if len(medidos) else None
+    puntos_rec = mejora.mean() * 100 if len(medidos) else None
+    utilidad_rec = (mejora * medidos["Ingresos"]).sum() if len(medidos) else None
     alertas = pd.concat([pd.read_csv(p) for p in sorted(SALIDA.glob("alertas_*.csv"))],
                         ignore_index=True) if list(SALIDA.glob("alertas_*.csv")) else pd.DataFrame()
 
