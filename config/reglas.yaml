@@ -84,12 +84,14 @@ alertas:
 # Proyección de cierre al corte quincenal (día 15)
 proyeccion:
   fraccion_quincena: 0.5                 # parte del mes transcurrida al corte
+  rubros_provision_proyectada:           # en la quincena se carga la provisión proyectada del mes completo
+    - Ingresos De Explotacion
+    - Costos Del Personal
   rubros_run_rate:                       # se proyectan a mes completo con lo contabilizado
     - Costos Operacionales
     - Costos Offshore Operacional
     - No Operacional
-  rubros_referencia:                     # se toman del último cierre (fijos o se centralizan al cierre)
-    - Costos Del Personal
+  rubros_referencia:                     # se mantienen del último cierre
     - Gastos Generales Fijos
 
 # Comité de rentabilidad: umbrales sobre el margen neto proyectado por proyecto

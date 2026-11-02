@@ -1,8 +1,7 @@
 CodigoProyecto,Proyecto,LineaDeNegocio,Cliente,Provision,FacturadoNeto,TipoAlerta,Monto,Responsable,Severidad,Estado,Mes
-PY_40104,Ventas Seguros Banco E,Vtas_Servicios,Banco E,79669456.0,-3363277.0,Provision sin factura,-79669456.0,Facturacion,Alta,Pendiente,2026-05
-PY_30101,ATC Tarjeta Retail D,Vtas_ATC,Retail D,258166399.0,225175051.0,Facturado menor a provision,-32991348.0,Facturacion,Alta,Pendiente,2026-05
-PY_40102,Ventas Outbound Telco F,Vtas_Servicios,Telco F,162329902.0,140199311.0,Facturado menor a provision,-22130591.0,Facturacion,Alta,Pendiente,2026-05
-PY_10101,BPO Back Office Banco A,BPO,Banco A,210157865.0,197217980.0,Facturado menor a provision,-12939885.0,Facturacion,Alta,Pendiente,2026-05
-PY_10103,BPO Prendas Financiera C,BPO,Financiera C,179283351.0,167157603.0,Facturado menor a provision,-12125748.0,Facturacion,Alta,Pendiente,2026-05
-PY_10104,BPO Validacion Retail D,BPO,Retail D,58796516.0,50151077.0,Facturado menor a provision,-8645439.0,Facturacion,Media,Pendiente,2026-05
-PY_40101,Ventas Inbound Telco F,Vtas_Servicios,Telco F,228433950.0,220035647.0,Nota de credito no provisionada,-7634445.0,Comercial,Media,Pendiente,2026-05
+PY_10101,BPO Back Office Banco A,BPO,Banco A,212821325.0,191341903.0,Facturado menor a provision,-21479422.0,Facturacion,Alta,Pendiente,2026-05
+PY_40101,Ventas Inbound Telco F,Vtas_Servicios,Telco F,221086144.0,237438244.0,Facturado mayor a provision,16352100.0,Control de Gestion,Alta,Pendiente,2026-05
+PY_50101,Off-Shore Retenciones Telco H,Off-Shore,Telco H,298025558.0,282429286.0,Facturado menor a provision,-15596272.0,Facturacion,Alta,Pendiente,2026-05
+PY_20105,Cobranza Telco F,Cobranza,Telco F,131834453.0,123945997.0,Facturado menor a provision,-7888456.0,Facturacion,Media,Pendiente,2026-05
+PY_50102,Off-Shore Cobranza Telco H,Off-Shore,Telco H,214598131.0,206243535.0,Nota de credito no provisionada,-7595913.0,Comercial,Media,Pendiente,2026-05
+PY_30104,ATC Seguros B,Vtas_ATC,Seguros B,85539196.0,82506717.0,Nota de credito no provisionada,-3053738.0,Comercial,Media,Pendiente,2026-05

@@ -254,21 +254,32 @@ FRACCION_Q1 = {
     "Costos Operacionales": 0.50,
     "Costos Offshore Operacional": 0.50,
     "No Operacional": 0.45,
-    "Gastos Generales Fijos": 0.35,         # facturas de proveedores que ya llegaron
-    "Costos Del Personal": 0.00,            # la nómina se centraliza al cierre
+    "Gastos Generales Fijos": 0.00,         # se mantienen del último cierre (no se proyectan en la quincena)
+    "Costos Del Personal": 1.00,            # se carga la provisión proyectada del mes completo
 }
 
 
 def corte_quincenal(base: pd.DataFrame, rng: np.random.Generator) -> pd.DataFrame:
-    """Simula el extracto del ERP al día 15: solo lo contabilizado hasta esa fecha.
+    """Simula el extracto del ERP al día 15 con las provisiones proyectadas cargadas.
 
-    - Ingresos: la provisión mensual ya está completa.
+    - Ingresos y costo del personal: Control de Gestión carga en la quincena la
+      provisión proyectada del mes completo (con una desviación pequeña respecto
+      del cierre real).
     - Rubros variables (operacionales, offshore, no operacional): cada proyecto lleva
       consumida una fracción cercana a la mitad del mes, con dispersión propia.
-    - Gastos generales fijos: solo las facturas de proveedores ya recibidas.
-    - Costos del personal: la nómina se centraliza al cierre; no hay nada contabilizado.
+    - Gastos generales fijos: no se proyectan en la quincena; el motor los mantiene
+      del último cierre.
     """
-    partes = [base[base["EERR"] == "Ingresos De Explotacion"]]
+    partes = []
+    prov = base[base["EERR"].isin(["Ingresos De Explotacion", "Costos Del Personal"])].copy()
+    desvio = {k: rng.normal(1, 0.03) for k in prov.groupby(["CodigoProyecto", "EERR"]).size().index}
+    fd = prov.apply(lambda r: desvio[(r["CodigoProyecto"], r["EERR"])], axis=1)
+    prov["Saldo"] = np.round(prov["Saldo"] * fd, 0)
+    prov["Debit"] = np.where(prov["Saldo"] < 0, -prov["Saldo"], 0.0)
+    prov["Credit"] = np.where(prov["Saldo"] > 0, prov["Saldo"], 0.0)
+    prov["Type"] = "Provision"
+    prov["Memo"] = prov["Memo"].astype(str) + " (provision proyectada)"
+    partes.append(prov)
     variables = ["Costos Operacionales", "Costos Offshore Operacional", "No Operacional"]
     var = base[base["EERR"].isin(variables)].copy()
     factor = {k: FRACCION_Q1[k[1]] * rng.normal(1, 0.10)
@@ -278,8 +289,6 @@ def corte_quincenal(base: pd.DataFrame, rng: np.random.Generator) -> pd.DataFram
     var["Debit"] = np.where(var["Saldo"] < 0, -var["Saldo"], 0.0)
     var["Credit"] = np.where(var["Saldo"] > 0, var["Saldo"], 0.0)
     partes.append(var)
-    ggf = base[base["EERR"] == "Gastos Generales Fijos"]
-    partes.append(ggf.sample(frac=FRACCION_Q1["Gastos Generales Fijos"], random_state=int(rng.integers(1 << 30))))
     q1 = pd.concat(partes).sort_index()
     q1["Fecha"] = q1["Mes"].str[:7] + "-15"
     return q1

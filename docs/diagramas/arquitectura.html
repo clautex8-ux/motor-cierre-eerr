@@ -26,7 +26,7 @@
 <div class="capa"><div class="tag"><b><span class="num">2</span>Entradas</b><span>ERP + maestros</span></div>
  <div class="fila">
   <div class="box"><b>Base EERR del ERP</b><span>Corte día 15 y cierre; 27 columnas, ~6.400 filas al mes</span></div>
-  <div class="box"><b>Provisión de ingresos</b><span>Monto provisionado por campaña</span></div>
+  <div class="box"><b>Provisiones proyectadas</b><span>Ingresos y costo de personal del mes, cargadas en la quincena</span></div>
   <div class="box"><b>Facturación ERP</b><span>Facturas y notas de crédito por proyecto</span></div>
   <div class="box"><b>Maestros y reglas</b><span>Proyectos, FTE, mapeo, umbrales de margen (reglas.yaml)</span></div>
  </div></div>
@@ -35,7 +35,7 @@
 <div class="capa proc"><div class="tag"><b><span class="num">3</span>Procesamiento</b><span>Python · pandas</span></div>
  <div class="fila">
   <div class="box"><b>1 · Extraer</b><span>Lee y valida estructura; falla si falta una columna</span></div>
-  <div class="box"><b>2 · Validar y proyectar</b><span>7 reglas de calidad; al día 15 proyecta el cierre (run-rate + referencia)</span></div>
+  <div class="box"><b>2 · Validar y proyectar</b><span>7 reglas de calidad; al día 15 proyecta el cierre (provisión + run-rate + fijos)</span></div>
   <div class="box key"><b>3 · Distribuir</b><span>Gerencias, STAFF por criterio, OH 3%, impuesto 27% RAI; cuadratura = $0</span></div>
   <div class="box"><b>4 · Alertar</b><span>Proyectos bajo margen mínimo con utilidad en juego; fugas provisión vs. factura</span></div>
  </div></div>

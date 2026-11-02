@@ -1,7 +1,6 @@
 CodigoProyecto,Proyecto,LineaDeNegocio,Cliente,Provision,FacturadoNeto,TipoAlerta,Monto,Responsable,Severidad,Estado,Mes
-PY_10101,BPO Back Office Banco A,BPO,Banco A,227201453.0,0.0,Provision sin factura,-227201453.0,Facturacion,Alta,Pendiente,2026-08
-PY_40101,Ventas Inbound Telco F,Vtas_Servicios,Telco F,260538238.0,246069937.0,Nota de credito no provisionada,-14918634.0,Comercial,Alta,Pendiente,2026-08
-PY_10102,BPO Digitalizacion Seguros B,BPO,Seguros B,113246749.0,99896552.0,Facturado menor a provision,-13350197.0,Facturacion,Alta,Pendiente,2026-08
-PY_50101,Off-Shore Retenciones Telco H,Off-Shore,Telco H,321483542.0,307714730.0,Nota de credito no provisionada,-13075628.0,Comercial,Alta,Pendiente,2026-08
-PY_30104,ATC Seguros B,Vtas_ATC,Seguros B,90448953.0,85222561.0,Facturado menor a provision,-5226392.0,Facturacion,Media,Pendiente,2026-08
-PY_50105,Off-Shore Mensajeria Telco H,Off-Shore,Telco H,100649714.0,95830244.0,Nota de credito no provisionada,-4566385.0,Comercial,Media,Pendiente,2026-08
+PY_10101,BPO Back Office Banco A,BPO,Banco A,212536146.0,0.0,Provision sin factura,-212536146.0,Facturacion,Alta,Pendiente,2026-08
+PY_50104,Off-Shore Back Office Telco F,Off-Shore,Telco F,114708427.0,0.0,Provision sin factura,-114708427.0,Facturacion,Alta,Pendiente,2026-08
+PY_30103,ATC Compra Cartera Retail D,Vtas_ATC,Retail D,69772575.0,0.0,Provision sin factura,-69772575.0,Facturacion,Alta,Pendiente,2026-08
+PY_50101,Off-Shore Retenciones Telco H,Off-Shore,Telco H,324587798.0,287860072.0,Facturado menor a provision,-36727726.0,Facturacion,Alta,Pendiente,2026-08
+PY_20103,Cobranza Leasing Banco E,Cobranza,Banco E,142495163.0,153048401.0,Facturado mayor a provision,10553238.0,Control de Gestion,Alta,Pendiente,2026-08

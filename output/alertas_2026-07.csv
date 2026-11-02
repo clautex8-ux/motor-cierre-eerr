@@ -1,6 +1,3 @@
 CodigoProyecto,Proyecto,LineaDeNegocio,Cliente,Provision,FacturadoNeto,TipoAlerta,Monto,Responsable,Severidad,Estado,Mes
-PY_30103,ATC Compra Cartera Retail D,Vtas_ATC,Retail D,77941979.0,0.0,Provision sin factura,-77941979.0,Facturacion,Alta,Pendiente,2026-07
-PY_10103,BPO Prendas Financiera C,BPO,Financiera C,193450218.0,179389680.0,Facturado menor a provision,-14060538.0,Facturacion,Alta,Pendiente,2026-07
-PY_50101,Off-Shore Retenciones Telco H,Off-Shore,Telco H,312542904.0,302889959.0,Nota de credito no provisionada,-10887123.0,Comercial,Alta,Pendiente,2026-07
-PY_50106,Off-Shore Outbound Peru Telco H,Off-Shore,Telco H,69214099.0,61475138.0,Facturado menor a provision,-7738961.0,Facturacion,Media,Pendiente,2026-07
-PY_50105,Off-Shore Mensajeria Telco H,Off-Shore,Telco H,88602184.0,82921270.0,Facturado menor a provision,-5680914.0,Facturacion,Media,Pendiente,2026-07
+PY_30101,ATC Tarjeta Retail D,Vtas_ATC,Retail D,267910810.0,256864461.0,Nota de credito no provisionada,-12127590.0,Comercial,Alta,Pendiente,2026-07
+PY_30103,ATC Compra Cartera Retail D,Vtas_ATC,Retail D,69409634.0,72935290.0,Facturado mayor a provision,3525656.0,Control de Gestion,Media,Pendiente,2026-07

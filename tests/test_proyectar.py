@@ -17,10 +17,13 @@ def proyeccion(base, maestros):
     return base_proy, res, eerr, cuad, validas_r
 
 
-def test_ingresos_se_toman_completos_del_corte(proyeccion):
+def test_provision_proyectada_se_toma_tal_cual_del_corte(proyeccion):
     base_proy, _, _, _, real = proyeccion
-    ing = "Ingresos De Explotacion"
-    assert base_proy.loc[base_proy["EERR"] == ing, "Saldo"].sum() == real.loc[real["EERR"] == ing, "Saldo"].sum()
+    for rubro in cargar_reglas()["proyeccion"]["rubros_provision_proyectada"]:
+        proy = base_proy.loc[base_proy["EERR"] == rubro, "Saldo"].sum()
+        obs = real.loc[real["EERR"] == rubro, "Saldo"].sum()
+        assert abs(proy / obs - 1) < 0.05, rubro          # provisión cargada ≈ cierre real
+        assert (base_proy.loc[base_proy["EERR"] == rubro, "Origen"] == "Provision proyectada").all()
 
 
 def test_rubros_run_rate_se_escalan_a_mes_completo(proyeccion):

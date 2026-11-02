@@ -167,7 +167,7 @@ def precision(ej):
     ax.set_ylim(0, 7)
     ax.set_ylabel("Error medio de margen (pp)")
     ax.grid(axis="x", visible=False)
-    _titulo(ax, "IL4 · La proyección del día 15 se desvía 3,7 pp del margen real",
+    _titulo(ax, f"IL4 · La proyección del día 15 se desvía {e['ErrorProyPP'].mean():.1f} pp del margen real".replace(".", ","),
             "Error absoluto medio por proyecto y % de proyectos bien clasificados (bajo/sobre 5%)")
     fig.savefig(IMG / "il4_precision_proyeccion.png")
     plt.close(fig)

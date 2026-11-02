@@ -1,8 +1,8 @@
 Mes,LineaDeNegocio,CodigoProyecto,Proyecto,Ingresos De Explotacion,Resultado,MargenProyectado,Severidad,BrechaPP,UtilidadPorPunto,UtilidadEnJuego,Accion,Estado
-2026-10,Vtas_Servicios,PY_40104,Ventas Seguros Banco E,73700275.0,-6850199.0,-0.09294672238332896,Margen negativo,19.294672238332897,737003.0,14220226.0,Revisar en comité de rentabilidad,Pendiente
-2026-10,Cobranza,PY_20104,Cobranza Castigo Retail D,74355398.0,-6615770.0,-0.08897497932833337,Margen negativo,18.89749793283334,743554.0,14051310.0,Revisar en comité de rentabilidad,Pendiente
-2026-10,Vtas_ATC,PY_30103,ATC Compra Cartera Retail D,68249795.0,-2138032.0,-0.031326570284936385,Margen negativo,13.132657028493638,682498.0,8963012.0,Revisar en comité de rentabilidad,Pendiente
-2026-10,Off-Shore,PY_50104,Off-Shore Back Office Telco F,109011348.0,-1568138.0,-0.014385089522973333,Margen negativo,11.438508952297335,1090113.0,12469273.0,Revisar en comité de rentabilidad,Pendiente
-2026-10,Off-Shore,PY_50106,Off-Shore Outbound Peru Telco H,69754658.0,-390695.0,-0.005600987965563533,Margen negativo,10.560098796556353,697547.0,7366161.0,Revisar en comité de rentabilidad,Pendiente
-2026-10,BPO,PY_10102,BPO Digitalizacion Seguros B,110775980.0,4535711.0,0.040944896176951,Margen bajo,5.905510382304901,1107760.0,6541887.0,Revisar en comité de rentabilidad,Pendiente
-2026-10,Vtas_ATC,PY_30104,ATC Seguros B,85861636.0,4086933.0,0.04759905809388491,Margen bajo,5.240094190611509,858616.0,4499231.0,Revisar en comité de rentabilidad,Pendiente
+2026-10,Off-Shore,PY_50106,Off-Shore Outbound Peru Telco H,72451492.0,-7451822.0,-0.10285256789466807,Margen negativo,20.285256789466807,724515.0,14696971.0,Revisar en comité de rentabilidad,Pendiente
+2026-10,Vtas_Servicios,PY_40104,Ventas Seguros Banco E,78082378.0,-5073374.0,-0.06497463486575678,Margen negativo,16.49746348657568,780824.0,12881612.0,Revisar en comité de rentabilidad,Pendiente
+2026-10,Cobranza,PY_20104,Cobranza Castigo Retail D,74648938.0,-1341367.0,-0.017969003122321713,Margen negativo,11.796900312232172,746489.0,8806261.0,Revisar en comité de rentabilidad,Pendiente
+2026-10,Off-Shore,PY_50105,Off-Shore Mensajeria Telco H,84936256.0,-923641.0,-0.010874519828140293,Margen negativo,11.087451982814029,849363.0,9417267.0,Revisar en comité de rentabilidad,Pendiente
+2026-10,Vtas_ATC,PY_30102,ATC Retenciones Telco F,170886857.0,4038829.0,0.02363452093919663,Margen bajo,7.636547906080338,1708869.0,13049857.0,Revisar en comité de rentabilidad,Pendiente
+2026-10,BPO,PY_10101,BPO Back Office Banco A,192376036.0,4745352.0,0.024667064041178185,Margen bajo,7.533293595882181,1923760.0,14492252.0,Revisar en comité de rentabilidad,Pendiente
+2026-10,Off-Shore,PY_50101,Off-Shore Retenciones Telco H,279852126.0,9768616.0,0.03490634907665486,Margen bajo,6.509365092334515,2798521.0,18216597.0,Revisar en comité de rentabilidad,Pendiente

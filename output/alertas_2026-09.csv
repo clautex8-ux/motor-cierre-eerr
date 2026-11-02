@@ -1,6 +1,5 @@
 CodigoProyecto,Proyecto,LineaDeNegocio,Cliente,Provision,FacturadoNeto,TipoAlerta,Monto,Responsable,Severidad,Estado,Mes
-PY_40102,Ventas Outbound Telco F,Vtas_Servicios,Telco F,164791283.0,151105887.0,Facturado menor a provision,-13685396.0,Facturacion,Alta,Pendiente,2026-09
-PY_50103,Off-Shore Upselling Telco H,Off-Shore,Telco H,167592051.0,149846816.0,Facturado menor a provision,-11552012.0,Facturacion,Alta,Pendiente,2026-09
-PY_50104,Off-Shore Back Office Telco F,Off-Shore,Telco F,123420992.0,131533514.0,Facturado mayor a provision,8112522.0,Control de Gestion,Media,Pendiente,2026-09
-PY_50103,Off-Shore Upselling Telco H,Off-Shore,Telco H,167592051.0,149846816.0,Nota de credito no provisionada,-6193223.0,Comercial,Media,Pendiente,2026-09
-PY_20104,Cobranza Castigo Retail D,Cobranza,Retail D,86164584.0,84231246.0,Nota de credito no provisionada,-1886867.0,Comercial,Baja,Pendiente,2026-09
+PY_10103,BPO Prendas Financiera C,BPO,Financiera C,180089755.0,0.0,Provision sin factura,-180089755.0,Facturacion,Alta,Pendiente,2026-09
+PY_40104,Ventas Seguros Banco E,Vtas_Servicios,Banco E,84000077.0,0.0,Provision sin factura,-84000077.0,Facturacion,Alta,Pendiente,2026-09
+PY_40101,Ventas Inbound Telco F,Vtas_Servicios,Telco F,241516181.0,214245743.0,Facturado menor a provision,-27270438.0,Facturacion,Alta,Pendiente,2026-09
+PY_10104,BPO Validacion Retail D,BPO,Retail D,67866224.0,58071874.0,Facturado menor a provision,-9794350.0,Facturacion,Media,Pendiente,2026-09

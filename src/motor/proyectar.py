@@ -6,11 +6,12 @@ calcula el margen neto esperado de cada proyecto. Los proyectos bajo el margen
 mínimo entran a la lista del comité de rentabilidad con la utilidad en juego.
 
 Método de proyección por rubro (config/reglas.yaml -> proyeccion):
-  - Ingresos: la provisión del mes ya está completa al corte; se toma tal cual.
+  - Provisión proyectada (ingresos y costo de personal): en la quincena Control de
+    Gestión carga la provisión proyectada del mes completo; se toma tal cual.
   - Rubros run-rate (operacionales, offshore, no operacional): lo contabilizado
     a la quincena se escala a mes completo (saldo / fracción transcurrida).
-  - Rubros de referencia (personal, gastos fijos): se centralizan o facturan al
-    cierre, por lo que se toman del último mes cerrado del mismo proyecto.
+  - Rubros de referencia (gastos generales fijos): se mantienen del último mes
+    cerrado del mismo proyecto.
 """
 from __future__ import annotations
 
@@ -35,10 +36,11 @@ class ResumenProyeccion:
 def construir_base_proyectada(corte: pd.DataFrame, cierre_ref: pd.DataFrame, mes: str):
     """Devuelve (base proyectada a mes completo, ResumenProyeccion)."""
     r = cargar_reglas()
-    p, ing = r["proyeccion"], r["rubro_ingresos"]
+    p = r["proyeccion"]
     frac = p["fraccion_quincena"]
+    prov_rubros = p["rubros_provision_proyectada"]
 
-    ingresos = corte[corte["EERR"] == ing].assign(Origen="Provision mes")
+    provision = corte[corte["EERR"].isin(prov_rubros)].assign(Origen="Provision proyectada")
 
     run = corte[corte["EERR"].isin(p["rubros_run_rate"])].copy()
     run["Saldo"] = np.round(run["Saldo"] / frac, 0)
@@ -52,10 +54,10 @@ def construir_base_proyectada(corte: pd.DataFrame, cierre_ref: pd.DataFrame, mes
     ref["Memo"] = ref["Memo"].astype(str) + " (referencia cierre anterior)"
     ref["Origen"] = "Referencia cierre anterior"
 
-    otros = corte[~corte["EERR"].isin([ing, *p["rubros_run_rate"], *p["rubros_referencia"]])]
+    otros = corte[~corte["EERR"].isin([*prov_rubros, *p["rubros_run_rate"], *p["rubros_referencia"]])]
     otros = otros.assign(Origen="Contabilizado")
 
-    base = pd.concat([ingresos, run, ref, otros], ignore_index=True)
+    base = pd.concat([provision, run, ref, otros], ignore_index=True)
     resumen = ResumenProyeccion(mes, str(cierre_ref["Mes"].iloc[0])[:7], len(corte), len(base),
                                 len(run), len(ref))
     return base, resumen

@@ -1,19 +1,19 @@
 Nivel,KPI,Valor,Meta,Cumple,Fuente
-IL3,"% de filas con proyecto, línea y cuenta válidos",0.9991,"≥ 99,5%",Sí,promedio de corridas
+IL3,"% de filas con proyecto, línea y cuenta válidos",0.9992,"≥ 99,5%",Sí,promedio de corridas
 IL3,Diferencia de cuadratura origen vs. distribuido ($),0.0,$0,Sí,máximo de corridas
-IL3,Filas corregidas automáticamente por mes,4.4167,informativo,—,promedio
+IL3,Filas corregidas automáticamente por mes,6.4167,informativo,—,promedio
 IL4,% de ejecuciones sin error (cortes Q1 + cierres),1.0,≥ 99%,Sí,12 de 12 corridas
-IL4,Tiempo de ejecución por corrida (segundos),4.9,< 60 s,Sí,promedio
+IL4,Tiempo de ejecución por corrida (segundos),4.9092,< 60 s,Sí,promedio
 IL4,Proyecciones quincenales entregadas,6.0,1 por mes,Sí,acumulado
-IL4,Error medio de la proyección de margen (pp),3.6859,≤ 5 pp,Sí,proyección vs. cierre
-IL4,Acierto al clasificar proyectos bajo margen mínimo,0.9043,≥ 85%,Sí,proyección vs. cierre
-IL5,Utilidad por cada punto de margen de la cartera ($/mes),34247739.1517,informativo,—,1% de los ingresos mensuales
+IL4,Error medio de la proyección de margen (pp),2.4653,≤ 5 pp,Sí,proyección vs. cierre
+IL4,Acierto al clasificar proyectos bajo margen mínimo,0.9217,≥ 85%,Sí,proyección vs. cierre
+IL5,Utilidad por cada punto de margen de la cartera ($/mes),34223523.6883,informativo,—,1% de los ingresos mensuales
 IL5,Proyectos bajo margen mínimo en la última proyección,7.0,informativo,—,corte 2026-10 Q1
-IL5,Utilidad en juego en la última proyección ($),68111100.0,informativo,—,brecha a margen objetivo × ingresos
+IL5,Utilidad en juego en la última proyección ($),91560817.0,informativo,—,brecha a margen objetivo × ingresos
 IL5,Puntos de margen recuperados en proyectos intervenidos (pp),0.0,≥ 3 pp,Pendiente,pendiente de medición
 IL5,Utilidad adicional por intervenciones del comité ($),0.0,> 0,Pendiente,pendiente de medición
 IL5,Horas de cierre por mes (línea base manual),40.0,—,—,declarado
 IL5,Horas de cierre por mes con el motor,16.0,≤ 16 h,Pendiente,meta (pendiente de medición)
 IL5,Horas ahorradas por mes,24.0,≥ 24 h,Pendiente,meta (pendiente de medición)
 IL5,Aumento de productividad del cierre,0.6,≥ 60%,Pendiente,horas ahorradas / horas base
-IL5,"Diferencias provisión vs. facturación detectadas ($, acumulado)",714695634.0,informativo,—,36 alertas
+IL5,"Diferencias provisión vs. facturación detectadas ($, acumulado)",940151300.0,informativo,—,31 alertas

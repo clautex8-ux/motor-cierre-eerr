@@ -3,7 +3,7 @@
 Producto de datos que automatiza el cierre del Estado de Resultados (EERR) por proyecto de una empresa BPO multipaís
 y corre **dos veces al mes**:
 
-- **Día 15 (corte Q1):** proyecta el cierre del mes con lo contabilizado a la fecha y entrega al **comité de
+- **Día 15 (corte Q1):** con las provisiones proyectadas de ingresos y personal más lo contabilizado a la fecha, proyecta el cierre del mes y entrega al **comité de
   rentabilidad** la lista de proyectos con margen negativo o bajo el mínimo, con la utilidad en juego de cada uno,
   para tomar acciones antes de que termine el mes.
 - **Cierre:** consolida la base contable, valida su calidad, distribuye gerencias, STAFF, OH Latam e impuesto a cada
@@ -84,9 +84,9 @@ distribuye con las mismas reglas del cierre:
 
 | Rubro | Método al corte Q1 |
 |---|---|
-| Ingresos de explotación | La provisión del mes ya está completa: se toma tal cual |
+| Ingresos de explotación y costos del personal | Provisión proyectada del mes completo, cargada por Control de Gestión en la quincena |
 | Costos operacionales, offshore, no operacional | Run-rate: lo contabilizado ÷ fracción del mes transcurrida (0,5) |
-| Costos del personal, gastos generales fijos | Referencia: se toman del último cierre del mismo proyecto |
+| Gastos generales fijos | Se mantienen del último cierre del mismo proyecto |
 
 Los proyectos cuyo margen neto proyectado queda bajo `rentabilidad.margen_minimo` (5%) entran a la hoja
 `Comite_Rentabilidad` con severidad (negativo / bajo), brecha en puntos hasta el objetivo (10%), **utilidad por punto**

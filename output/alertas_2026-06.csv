@@ -1,5 +1,6 @@
 CodigoProyecto,Proyecto,LineaDeNegocio,Cliente,Provision,FacturadoNeto,TipoAlerta,Monto,Responsable,Severidad,Estado,Mes
-PY_50103,Off-Shore Upselling Telco H,Off-Shore,Telco H,162748615.0,174936895.0,Facturado mayor a provision,12188280.0,Control de Gestion,Alta,Pendiente,2026-06
-PY_20101,Cobranza Temprana Banco A,Cobranza,Banco A,234846758.0,224358599.0,Nota de credito no provisionada,-10404817.0,Comercial,Alta,Pendiente,2026-06
-PY_40104,Ventas Seguros Banco E,Vtas_Servicios,Banco E,84483990.0,78082492.0,Facturado menor a provision,-6401498.0,Facturacion,Media,Pendiente,2026-06
-PY_30104,ATC Seguros B,Vtas_ATC,Seguros B,88075488.0,94007164.0,Facturado mayor a provision,5931676.0,Control de Gestion,Media,Pendiente,2026-06
+PY_20101,Cobranza Temprana Banco A,Cobranza,Banco A,226492708.0,238575329.0,Facturado mayor a provision,12082621.0,Control de Gestion,Alta,Pendiente,2026-06
+PY_50102,Off-Shore Cobranza Telco H,Off-Shore,Telco H,219545457.0,220145899.0,Facturado mayor a provision,8831387.0,Control de Gestion,Media,Pendiente,2026-06
+PY_50102,Off-Shore Cobranza Telco H,Off-Shore,Telco H,219545457.0,220145899.0,Nota de credito no provisionada,-8230945.0,Comercial,Media,Pendiente,2026-06
+PY_50103,Off-Shore Upselling Telco H,Off-Shore,Telco H,159164077.0,153978590.0,Nota de credito no provisionada,-5922758.0,Comercial,Media,Pendiente,2026-06
+PY_20105,Cobranza Telco F,Cobranza,Telco F,112671601.0,117129084.0,Facturado mayor a provision,4457483.0,Control de Gestion,Media,Pendiente,2026-06

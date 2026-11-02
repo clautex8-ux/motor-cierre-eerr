@@ -1,7 +1,6 @@
 Mes,LineaDeNegocio,CodigoProyecto,Proyecto,Ingresos De Explotacion,Resultado,MargenProyectado,Severidad,BrechaPP,UtilidadPorPunto,UtilidadEnJuego,Accion,Estado
-2026-08,Vtas_Servicios,PY_40104,Ventas Seguros Banco E,83687698.0,-7430266.0,-0.0887856420665317,Margen negativo,18.87856420665317,836877.0,15799036.0,Revisar en comité de rentabilidad,Pendiente
-2026-08,Vtas_ATC,PY_30103,ATC Compra Cartera Retail D,75085274.0,-2048884.0,-0.027287427891652897,Margen negativo,12.72874278916529,750853.0,9557411.0,Revisar en comité de rentabilidad,Pendiente
-2026-08,Cobranza,PY_20104,Cobranza Castigo Retail D,81765987.0,706987.0,0.008646468121273947,Margen bajo,9.135353187872605,817660.0,7469612.0,Revisar en comité de rentabilidad,Pendiente
-2026-08,Off-Shore,PY_50106,Off-Shore Outbound Peru Telco H,70822999.0,645351.0,0.009112167080075216,Margen bajo,9.08878329199248,708230.0,6436949.0,Revisar en comité de rentabilidad,Pendiente
-2026-08,Off-Shore,PY_50101,Off-Shore Retenciones Telco H,321483542.0,7523284.0,0.023401770284091246,Margen bajo,7.659822971590876,3214835.0,24625070.0,Revisar en comité de rentabilidad,Pendiente
-2026-08,BPO,PY_10102,BPO Digitalizacion Seguros B,113246749.0,4091714.0,0.03613096213472759,Margen bajo,6.386903786527241,1132467.0,7232961.0,Revisar en comité de rentabilidad,Pendiente
+2026-08,Vtas_Servicios,PY_40104,Ventas Seguros Banco E,86999657.0,-7399769.0,-0.08505515142433262,Margen negativo,18.505515142433264,869997.0,16099735.0,Revisar en comité de rentabilidad,Pendiente
+2026-08,Off-Shore,PY_50106,Off-Shore Outbound Peru Telco H,69642785.0,-1209654.0,-0.017369408762156768,Margen negativo,11.736940876215678,696428.0,8173933.0,Revisar en comité de rentabilidad,Pendiente
+2026-08,Cobranza,PY_20104,Cobranza Castigo Retail D,82450895.0,-1216134.0,-0.014749797440039918,Margen negativo,11.474979744003992,824509.0,9461224.0,Revisar en comité de rentabilidad,Pendiente
+2026-08,Vtas_ATC,PY_30103,ATC Compra Cartera Retail D,70618066.0,1247452.0,0.017664771504787458,Margen bajo,8.233522849521254,706181.0,5814355.0,Revisar en comité de rentabilidad,Pendiente
+2026-08,Cobranza,PY_20105,Cobranza Telco F,125417567.0,5148890.0,0.04105397770951816,Margen bajo,5.894602229048185,1254176.0,7392867.0,Revisar en comité de rentabilidad,Pendiente
