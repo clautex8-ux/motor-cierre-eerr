@@ -12,6 +12,8 @@ y corre **dos veces al mes**:
 
 **Autor:** Claudio Choque Peña · Proyecto final individual · Diploma Ciencia de Datos para las Finanzas, FEN U. de Chile
 
+[![CI motor de cierre EERR](https://github.com/clautex8-ux/motor-cierre-eerr/actions/workflows/ci.yml/badge.svg)](https://github.com/clautex8-ux/motor-cierre-eerr/actions)
+
 > **Declaración de datos.** Todos los archivos de `data/` son **sintéticos, anonimizados y escalados** por seguridad de
 > la información. Replican la estructura real del extracto EERR del ERP (27 columnas, CSV `;`, latin1) y las reglas de
 > negocio del cierre, pero proyectos, clientes y montos son ficticios. Se generan con `motor.generar_datos`.
