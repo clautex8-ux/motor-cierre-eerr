@@ -2,8 +2,10 @@
 
 Con el extracto del ERP al día 15 (corte Q1) el motor construye una base EERR
 proyectada a mes completo, la distribuye con las mismas reglas del cierre y
-calcula el margen neto esperado de cada proyecto. Los proyectos bajo el margen
-mínimo entran a la lista del comité de rentabilidad con la utilidad en juego.
+calcula el margen operativo esperado de cada proyecto (antes de OH Latam, no
+operacional e impuesto). Los proyectos bajo el margen operativo mínimo entran a la
+lista del comité de rentabilidad con la utilidad en juego; el margen neto se informa
+como referencia.
 
 Método de proyección por rubro (config/reglas.yaml -> proyeccion):
   - Provisión proyectada (ingresos y costo de personal): en la quincena Control de
@@ -64,35 +66,44 @@ def construir_base_proyectada(corte: pd.DataFrame, cierre_ref: pd.DataFrame, mes
 
 
 def alertas_rentabilidad(resumen_proy: pd.DataFrame, mes: str) -> pd.DataFrame:
-    """Proyectos bajo el margen mínimo, con la utilidad en juego para el comité."""
+    """Proyectos bajo el margen operativo mínimo, con la utilidad en juego para el comité.
+
+    La métrica de decisión es el margen operativo (antes de OH Latam, no operacional e
+    impuesto), que es lo que la gerencia del proyecto controla con tarifa, dotación y
+    costos. El margen neto se informa como referencia. Cada punto de margen operativo
+    recuperado equivale al 1% de los ingresos del proyecto en utilidad antes de impuesto.
+    """
     r = cargar_reglas()["rentabilidad"]
     ing = "Ingresos De Explotacion"
     d = resumen_proy[resumen_proy[ing] > 0].copy()
-    d["MargenProyectado"] = d["Resultado"] / d[ing]
-    bajo = d[d["MargenProyectado"] < r["margen_minimo"]].copy()
+    d["MargenOperativo"] = d["Resultado Operativo"] / d[ing]
+    d["MargenNeto"] = d["Resultado"] / d[ing]
+    bajo = d[d["MargenOperativo"] < r["margen_minimo"]].copy()
     bajo["Mes"] = mes
-    bajo["Severidad"] = np.where(bajo["MargenProyectado"] < 0, "Margen negativo", "Margen bajo")
-    bajo["BrechaPP"] = (r["margen_objetivo"] - bajo["MargenProyectado"]) * 100
+    bajo["Severidad"] = np.where(bajo["MargenOperativo"] < 0, "Margen negativo", "Margen bajo")
+    bajo["BrechaPP"] = (r["margen_objetivo"] - bajo["MargenOperativo"]) * 100
     bajo["UtilidadPorPunto"] = np.round(bajo[ing] * 0.01, 0)
-    bajo["UtilidadEnJuego"] = np.round((r["margen_objetivo"] - bajo["MargenProyectado"]) * bajo[ing], 0)
+    bajo["UtilidadEnJuego"] = np.round((r["margen_objetivo"] - bajo["MargenOperativo"]) * bajo[ing], 0)
     bajo["Accion"] = "Revisar en comité de rentabilidad"
     bajo["Estado"] = "Pendiente"
-    cols = ["Mes", "LineaDeNegocio", "CodigoProyecto", "Proyecto", ing, "Resultado", "MargenProyectado",
-            "Severidad", "BrechaPP", "UtilidadPorPunto", "UtilidadEnJuego", "Accion", "Estado"]
-    return bajo[cols].sort_values("MargenProyectado").reset_index(drop=True)
+    cols = ["Mes", "LineaDeNegocio", "CodigoProyecto", "Proyecto", ing, "Resultado Operativo", "MargenOperativo",
+            "MargenNeto", "Severidad", "BrechaPP", "UtilidadPorPunto", "UtilidadEnJuego", "Accion", "Estado"]
+    return bajo[cols].sort_values("MargenOperativo").reset_index(drop=True)
 
 
 def comparar_con_cierre(resumen_proy: pd.DataFrame, resumen_real: pd.DataFrame) -> pd.DataFrame:
-    """Precisión de la proyección: margen proyectado vs. margen real por proyecto."""
-    ing = "Ingresos De Explotacion"
-    a = resumen_proy[["CodigoProyecto", "Proyecto", "LineaDeNegocio", ing, "Resultado"]].rename(
-        columns={ing: "IngresosProy", "Resultado": "ResultadoProy"})
-    b = resumen_real[["CodigoProyecto", ing, "Resultado"]].rename(
-        columns={ing: "IngresosReal", "Resultado": "ResultadoReal"})
+    """Precisión de la proyección: margen operativo proyectado vs. real por proyecto."""
+    ing, rop = "Ingresos De Explotacion", "Resultado Operativo"
+    a = resumen_proy[["CodigoProyecto", "Proyecto", "LineaDeNegocio", ing, rop, "Resultado"]].rename(
+        columns={ing: "IngresosProy", rop: "ResultadoOpProy", "Resultado": "ResultadoNetoProy"})
+    b = resumen_real[["CodigoProyecto", ing, rop, "Resultado"]].rename(
+        columns={ing: "IngresosReal", rop: "ResultadoOpReal", "Resultado": "ResultadoNetoReal"})
     c = a.merge(b, on="CodigoProyecto", how="inner")
     c = c[(c["IngresosProy"] > 0) & (c["IngresosReal"] > 0)]
-    c["MargenProy"] = c["ResultadoProy"] / c["IngresosProy"]
-    c["MargenReal"] = c["ResultadoReal"] / c["IngresosReal"]
+    c["MargenProy"] = c["ResultadoOpProy"] / c["IngresosProy"]        # margen operativo
+    c["MargenReal"] = c["ResultadoOpReal"] / c["IngresosReal"]
+    c["MargenNetoProy"] = c["ResultadoNetoProy"] / c["IngresosProy"]
+    c["MargenNetoReal"] = c["ResultadoNetoReal"] / c["IngresosReal"]
     c["ErrorPP"] = (c["MargenProy"] - c["MargenReal"]) * 100
     r = cargar_reglas()["rentabilidad"]
     c["ClasifProy"] = np.where(c["MargenProy"] < r["margen_minimo"], "Bajo", "OK")

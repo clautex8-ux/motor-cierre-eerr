@@ -180,7 +180,10 @@ def resumen_por_proyecto(df: pd.DataFrame) -> pd.DataFrame:
     piv = df.pivot_table(index=["LineaDeNegocio", "CodigoProyecto", "Proyecto"],
                          columns="EERR", values="Saldo", aggfunc="sum", fill_value=0).reset_index()
     rubros = [c for c in piv.columns if c not in ("LineaDeNegocio", "CodigoProyecto", "Proyecto")]
-    piv["Resultado"] = piv[rubros].sum(axis=1)
+    operativos = [c for c in cargar_reglas()["rubros_operativos"] if c in piv.columns]
+    piv["Resultado Operativo"] = piv[operativos].sum(axis=1)   # antes de OH Latam, no operacional e impuesto
+    piv["Resultado"] = piv[rubros].sum(axis=1)                 # resultado neto
     ing = piv.get("Ingresos De Explotacion", 0)
+    piv["Margen Operativo %"] = np.where(ing != 0, piv["Resultado Operativo"] / ing, 0.0)
     piv["Margen %"] = np.where(ing != 0, piv["Resultado"] / ing, 0.0)
-    return piv.sort_values(["LineaDeNegocio", "Resultado"], ascending=[True, False])
+    return piv.sort_values(["LineaDeNegocio", "Resultado Operativo"], ascending=[True, False])

@@ -94,10 +94,19 @@ proyeccion:
   rubros_referencia:                     # se mantienen del último cierre
     - Gastos Generales Fijos
 
-# Comité de rentabilidad: umbrales sobre el margen neto proyectado por proyecto
+# Comité de rentabilidad: umbrales sobre el MARGEN OPERATIVO proyectado por proyecto.
+# El margen operativo excluye OH Latam, No Operacional e impuesto: son distribuciones
+# corporativas que la gerencia del proyecto no controla. El margen neto se informa
+# al lado como referencia.
+rubros_operativos:
+  - Ingresos De Explotacion
+  - Costos Del Personal
+  - Costos Operacionales
+  - Gastos Generales Fijos
+  - Costos Offshore Operacional
 rentabilidad:
-  margen_minimo: 0.05                    # bajo este margen el proyecto entra al comité
-  margen_objetivo: 0.10                  # meta de margen neto por proyecto
+  margen_minimo: 0.05                    # bajo este margen operativo el proyecto entra al comité
+  margen_objetivo: 0.10                  # meta de margen operativo por proyecto
   dias_comite: 18                        # día hábil en que sesiona el comité con la proyección
 
 # Línea base para KPI IL5 (proceso manual)

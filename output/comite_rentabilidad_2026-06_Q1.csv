@@ -1,9 +1,3 @@
-Mes,LineaDeNegocio,CodigoProyecto,Proyecto,Ingresos De Explotacion,Resultado,MargenProyectado,Severidad,BrechaPP,UtilidadPorPunto,UtilidadEnJuego,Accion,Estado
-2026-06,Off-Shore,PY_50106,Off-Shore Outbound Peru Telco H,67515841.0,-2523117.0,-0.03737074089027492,Margen negativo,13.737074089027493,675158.0,9274701.0,Revisar en comité de rentabilidad,Pendiente
-2026-06,Cobranza,PY_20104,Cobranza Castigo Retail D,83988641.0,-442399.0,-0.005267367047884487,Margen negativo,10.52673670478845,839886.0,8841263.0,Revisar en comité de rentabilidad,Pendiente
-2026-06,Vtas_Servicios,PY_40104,Ventas Seguros Banco E,80872751.0,774766.0,0.009580062387144466,Margen bajo,9.041993761285553,808728.0,7312509.0,Revisar en comité de rentabilidad,Pendiente
-2026-06,Off-Shore,PY_50102,Off-Shore Cobranza Telco H,211736338.0,3464565.0,0.016362637763197737,Margen bajo,8.363736223680226,2117363.0,17709069.0,Revisar en comité de rentabilidad,Pendiente
-2026-06,Off-Shore,PY_50103,Off-Shore Upselling Telco H,147216284.0,4172111.0,0.02834001026679902,Margen bajo,7.165998973320098,1472163.0,10549517.0,Revisar en comité de rentabilidad,Pendiente
-2026-06,Vtas_ATC,PY_30103,ATC Compra Cartera Retail D,79215833.0,2632760.0,0.0332352750743655,Margen bajo,6.676472492563451,792158.0,5288823.0,Revisar en comité de rentabilidad,Pendiente
-2026-06,Off-Shore,PY_50104,Off-Shore Back Office Telco F,105883643.0,3658797.0,0.03455488398713293,Margen bajo,6.544511601286707,1058836.0,6929567.0,Revisar en comité de rentabilidad,Pendiente
-2026-06,Off-Shore,PY_50101,Off-Shore Retenciones Telco H,261962900.0,10924638.0,0.041702996874748294,Margen bajo,5.829700312525171,2619629.0,15271652.0,Revisar en comité de rentabilidad,Pendiente
+Mes,LineaDeNegocio,CodigoProyecto,Proyecto,Ingresos De Explotacion,Resultado Operativo,MargenOperativo,MargenNeto,Severidad,BrechaPP,UtilidadPorPunto,UtilidadEnJuego,Accion,Estado
+2026-06,Off-Shore,PY_50106,Off-Shore Outbound Peru Telco H,67515841.0,-324116.0,-0.004800591908497445,-0.03737074089027492,Margen negativo,10.480059190849746,675158.0,7075700.0,Revisar en comité de rentabilidad,Pendiente
+2026-06,Cobranza,PY_20104,Cobranza Castigo Retail D,83988641.0,3377277.0,0.04021111616748269,-0.005267367047884487,Margen bajo,5.978888383251731,839886.0,5021587.0,Revisar en comité de rentabilidad,Pendiente

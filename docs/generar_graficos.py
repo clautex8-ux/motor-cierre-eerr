@@ -118,37 +118,38 @@ def margen(ruta_xlsx):
     fig, ax = plt.subplots(figsize=(7.5, 3.3))
     ax.barh(r["LineaDeNegocio"], r["Ingresos De Explotacion"] / 1e6, color=GRIS, height=0.6,
             label="Ingresos")
+    ax.barh(r["LineaDeNegocio"], r["Resultado Operativo"] / 1e6, color=CELESTE, height=0.6, label="Resultado operativo")
     ax.barh(r["LineaDeNegocio"], r["Resultado"] / 1e6, color=NAVY, height=0.6, label="Resultado neto")
-    for i, (ing, res, mg) in enumerate(zip(r["Ingresos De Explotacion"], r["Resultado"], r["Margen %"])):
-        ax.text(ing / 1e6 + 10, i, f"margen {mg * 100:.1f}%".replace(".", ","), va="center",
-                fontsize=11, color=TINTA)
-    ax.set_xlim(0, r["Ingresos De Explotacion"].max() / 1e6 * 1.3)
+    for i, (ing, mo, mg) in enumerate(zip(r["Ingresos De Explotacion"], r["Margen Operativo %"], r["Margen %"])):
+        ax.text(ing / 1e6 + 10, i, f"operativo {mo * 100:.1f}% · neto {mg * 100:.1f}%".replace(".", ","), va="center",
+                fontsize=10.5, color=TINTA)
+    ax.set_xlim(0, r["Ingresos De Explotacion"].max() / 1e6 * 1.4)
     ax.set_xlabel("MM CLP, septiembre 2026 (datos sintéticos)")
     ax.legend(frameon=False, loc="lower right", fontsize=10)
     ax.grid(axis="y", visible=False)
-    _titulo(ax, "Salida · Resultado neto por línea después de distribuir",
-            "Incluye gerencias, STAFF, OH Latam e impuesto asignados a cada proyecto")
+    _titulo(ax, "Salida · Resultado operativo y neto por línea después de distribuir",
+            "Operativo: tras gerencias y STAFF · Neto: además OH Latam, no operacional e impuesto")
     fig.savefig(IMG / "salida_margen_linea.png")
     plt.close(fig)
 
 
 def comite(ruta_csv):
-    k = pd.read_csv(ruta_csv).sort_values("MargenProyectado")
+    k = pd.read_csv(ruta_csv).sort_values("MargenOperativo")
     r = cargar_reglas()["rentabilidad"]
     fig, ax = plt.subplots(figsize=(7.5, 3.6))
-    colores = [ROSA if m < 0 else NAVY for m in k["MargenProyectado"]]
-    ax.barh(k["Proyecto"], k["MargenProyectado"] * 100, color=colores, height=0.6)
+    colores = [ROSA if m < 0 else NAVY for m in k["MargenOperativo"]]
+    ax.barh(k["Proyecto"], k["MargenOperativo"] * 100, color=colores, height=0.6)
     ax.axvline(0, color=GRIS, lw=1)
     ax.axvline(r["margen_objetivo"] * 100, color=ROSA, lw=1.5, ls="--")
-    ax.text(r["margen_objetivo"] * 100 - 0.4, len(k) - 0.45, "objetivo 10%", color=ROSA, fontsize=10.5, ha="right")
-    for i, (m, u) in enumerate(zip(k["MargenProyectado"], k["UtilidadEnJuego"])):
+    ax.text(r["margen_objetivo"] * 100 - 0.4, -0.42, "objetivo 10%", color=ROSA, fontsize=10, ha="right", va="bottom")
+    for i, (m, u) in enumerate(zip(k["MargenOperativo"], k["UtilidadEnJuego"])):
         ax.text(r["margen_objetivo"] * 100 + 0.4, i, f"{mm(u)} en juego", va="center", fontsize=10.5, color=TINTA)
-    ax.set_xlim(min(k["MargenProyectado"].min() * 100 - 2, -12), 22)
-    ax.set_xlabel("Margen neto proyectado al cierre (%)")
+    ax.set_xlim(min(k["MargenOperativo"].min() * 100 - 2, -12), 22)
+    ax.set_xlabel("Margen operativo proyectado al cierre (%)")
     ax.grid(axis="y", visible=False)
     mes = k["Mes"].iloc[0]
-    _titulo(ax, f"Comité · {len(k)} proyectos bajo el margen mínimo al corte Q1 de {MESES.get(mes, mes)}",
-            f"Utilidad en juego: {mm(k['UtilidadEnJuego'].sum())} si todos alcanzan el objetivo (datos sintéticos)")
+    _titulo(ax, f"Comité · {len(k)} proyectos bajo el margen operativo mínimo al corte Q1 de {MESES.get(mes, mes)}",
+            f"Utilidad en juego: {mm(k['UtilidadEnJuego'].sum())} antes de impuesto si todos llegan al objetivo (datos sintéticos)")
     fig.savefig(IMG / "comite_margen_proyectado.png")
     plt.close(fig)
 
@@ -165,9 +166,9 @@ def precision(ej):
         ax.text(i, 0.3, f"acierto\n{ac * 100:.0f}%", ha="center", fontsize=9.5, color="white")
     ax.set_xticks(x, [MESES[m] for m in e["Mes"]])
     ax.set_ylim(0, 7)
-    ax.set_ylabel("Error medio de margen (pp)")
+    ax.set_ylabel("Error medio de margen operativo (pp)")
     ax.grid(axis="x", visible=False)
-    _titulo(ax, f"IL4 · La proyección del día 15 se desvía {e['ErrorProyPP'].mean():.1f} pp del margen real".replace(".", ","),
+    _titulo(ax, f"IL4 · La proyección del día 15 se desvía {e['ErrorProyPP'].mean():.1f} pp del margen operativo real".replace(".", ","),
             "Error absoluto medio por proyecto y % de proyectos bien clasificados (bajo/sobre 5%)")
     fig.savefig(IMG / "il4_precision_proyeccion.png")
     plt.close(fig)
@@ -183,8 +184,8 @@ def utilidad_por_punto(ing_mes):
     ax.set_ylim(0, max(vals) * 1.2)
     ax.set_ylabel("Utilidad adicional anual (MM CLP)")
     ax.grid(axis="x", visible=False)
-    _titulo(ax, "IL5 · Cada punto de margen de la cartera vale " + mm(ing_mes * 0.01) + " al mes",
-            f"Sobre ingresos mensuales de {mm(ing_mes)} (datos sintéticos); anualizado ×12")
+    _titulo(ax, "IL5 · Cada punto de margen operativo de la cartera vale " + mm(ing_mes * 0.01) + " al mes",
+            f"Utilidad antes de impuesto sobre ingresos mensuales de {mm(ing_mes)} (datos sintéticos); anualizado ×12")
     fig.savefig(IMG / "il5_utilidad_por_punto.png")
     plt.close(fig)
 

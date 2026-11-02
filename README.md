@@ -4,7 +4,7 @@ Producto de datos que automatiza el cierre del Estado de Resultados (EERR) por p
 y corre **dos veces al mes**:
 
 - **Día 15 (corte Q1):** con las provisiones proyectadas de ingresos y personal más lo contabilizado a la fecha, proyecta el cierre del mes y entrega al **comité de
-  rentabilidad** la lista de proyectos con margen negativo o bajo el mínimo, con la utilidad en juego de cada uno,
+  rentabilidad** la lista de proyectos con margen operativo negativo o bajo el mínimo, con la utilidad en juego de cada uno,
   para tomar acciones antes de que termine el mes.
 - **Cierre:** consolida la base contable, valida su calidad, distribuye gerencias, STAFF, OH Latam e impuesto a cada
   proyecto con cuadratura exacta, alerta las diferencias entre ingreso provisionado y facturado y mide la precisión
@@ -90,10 +90,14 @@ distribuye con las mismas reglas del cierre:
 | Costos operacionales, offshore, no operacional | Run-rate: lo contabilizado ÷ fracción del mes transcurrida (0,5) |
 | Gastos generales fijos | Se mantienen del último cierre del mismo proyecto |
 
-Los proyectos cuyo margen neto proyectado queda bajo `rentabilidad.margen_minimo` (5%) entran a la hoja
+La métrica de decisión del comité es el **margen operativo**: ingresos menos costos de personal, operacionales,
+offshore y gastos generales fijos (`rubros_operativos`), **antes de OH Latam, no operacional e impuesto**, que son
+distribuciones corporativas que la gerencia del proyecto no controla. El margen neto se informa al lado como referencia.
+
+Los proyectos cuyo margen operativo proyectado queda bajo `rentabilidad.margen_minimo` (5%) entran a la hoja
 `Comite_Rentabilidad` con severidad (negativo / bajo), brecha en puntos hasta el objetivo (10%), **utilidad por punto**
-(1% de sus ingresos) y **utilidad en juego** (brecha × ingresos). Al cierre, `precision_proyeccion_*.csv` compara el
-margen proyectado con el real por proyecto (error en pp y acierto de la clasificación).
+(1% de sus ingresos, antes de impuesto) y **utilidad en juego** (brecha × ingresos). Al cierre, `precision_proyeccion_*.csv`
+compara el margen operativo proyectado con el real por proyecto (error en pp y acierto de la clasificación).
 
 ## Contrato de datos (IL3)
 
@@ -116,15 +120,16 @@ Las filas en cuarentena quedan en la hoja `Cuarentena` del Excel con su motivo, 
 | IL3 | % de filas con proyecto, línea y cuenta válidos | ≥ 99,5% |
 | IL3 | Diferencia de cuadratura origen vs. distribuido | $0 |
 | IL4 | % de ejecuciones sin error (cortes Q1 + cierres) | ≥ 99% |
-| IL4 | Error medio de la proyección de margen vs. cierre | ≤ 5 pp |
-| IL4 | Acierto al clasificar proyectos bajo margen mínimo | ≥ 85% |
-| IL5 | Puntos de margen recuperados en proyectos intervenidos por el comité | ≥ 3 pp |
-| IL5 | Utilidad adicional por intervenciones (puntos recuperados × ingresos) | > 0 |
+| IL4 | Error medio de la proyección de margen operativo vs. cierre | ≤ 5 pp |
+| IL4 | Acierto al clasificar proyectos bajo margen operativo mínimo | ≥ 85% |
+| IL5 | Puntos de margen operativo recuperados en proyectos intervenidos por el comité | ≥ 3 pp |
+| IL5 | Utilidad adicional antes de impuesto por intervenciones (puntos recuperados × ingresos) | > 0 |
 | IL5 | Horas de cierre por mes (40 h manual → meta 16 h), secundario | ahorro ≥ 24 h/mes |
 
-**Lógica del IL5.** Cada punto de margen que un proyecto mejora equivale al 1% de sus ingresos en utilidad adicional;
-sobre la cartera completa, un punto vale 1% de los ingresos mensuales. El comité registra en
-`logs/seguimiento_comite.csv` los proyectos intervenidos, su margen proyectado y el margen real del cierre siguiente;
+**Lógica del IL5.** El margen es resultado ÷ ingresos, así que cada punto de margen operativo que un proyecto mejora,
+sea bajando costos (dotación, horas extra, mix) o subiendo tarifa, equivale al 1% de sus ingresos en utilidad adicional
+antes de impuesto; sobre la cartera completa, un punto vale 1% de los ingresos mensuales. El comité registra en
+`logs/seguimiento_comite.csv` los proyectos intervenidos, su margen operativo proyectado y el real del cierre siguiente;
 `motor.kpis` calcula los puntos recuperados y la utilidad generada, y marca el KPI como *Pendiente* mientras no haya
 cierres posteriores a la intervención.
 

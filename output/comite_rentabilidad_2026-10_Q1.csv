@@ -1,8 +1,5 @@
-Mes,LineaDeNegocio,CodigoProyecto,Proyecto,Ingresos De Explotacion,Resultado,MargenProyectado,Severidad,BrechaPP,UtilidadPorPunto,UtilidadEnJuego,Accion,Estado
-2026-10,Off-Shore,PY_50106,Off-Shore Outbound Peru Telco H,72451492.0,-7451822.0,-0.10285256789466807,Margen negativo,20.285256789466807,724515.0,14696971.0,Revisar en comité de rentabilidad,Pendiente
-2026-10,Vtas_Servicios,PY_40104,Ventas Seguros Banco E,78082378.0,-5073374.0,-0.06497463486575678,Margen negativo,16.49746348657568,780824.0,12881612.0,Revisar en comité de rentabilidad,Pendiente
-2026-10,Cobranza,PY_20104,Cobranza Castigo Retail D,74648938.0,-1341367.0,-0.017969003122321713,Margen negativo,11.796900312232172,746489.0,8806261.0,Revisar en comité de rentabilidad,Pendiente
-2026-10,Off-Shore,PY_50105,Off-Shore Mensajeria Telco H,84936256.0,-923641.0,-0.010874519828140293,Margen negativo,11.087451982814029,849363.0,9417267.0,Revisar en comité de rentabilidad,Pendiente
-2026-10,Vtas_ATC,PY_30102,ATC Retenciones Telco F,170886857.0,4038829.0,0.02363452093919663,Margen bajo,7.636547906080338,1708869.0,13049857.0,Revisar en comité de rentabilidad,Pendiente
-2026-10,BPO,PY_10101,BPO Back Office Banco A,192376036.0,4745352.0,0.024667064041178185,Margen bajo,7.533293595882181,1923760.0,14492252.0,Revisar en comité de rentabilidad,Pendiente
-2026-10,Off-Shore,PY_50101,Off-Shore Retenciones Telco H,279852126.0,9768616.0,0.03490634907665486,Margen bajo,6.509365092334515,2798521.0,18216597.0,Revisar en comité de rentabilidad,Pendiente
+Mes,LineaDeNegocio,CodigoProyecto,Proyecto,Ingresos De Explotacion,Resultado Operativo,MargenOperativo,MargenNeto,Severidad,BrechaPP,UtilidadPorPunto,UtilidadEnJuego,Accion,Estado
+2026-10,Off-Shore,PY_50106,Off-Shore Outbound Peru Telco H,72451492.0,-6869817.0,-0.09481953801586308,-0.10285256789466807,Margen negativo,19.48195380158631,724515.0,14114966.0,Revisar en comité de rentabilidad,Pendiente
+2026-10,Vtas_Servicios,PY_40104,Ventas Seguros Banco E,78082378.0,-3254285.0,-0.041677585690333356,-0.06497463486575678,Margen negativo,14.167758569033337,780824.0,11062523.0,Revisar en comité de rentabilidad,Pendiente
+2026-10,Cobranza,PY_20104,Cobranza Castigo Retail D,74648938.0,1526539.0,0.020449574245784984,-0.017969003122321713,Margen bajo,7.955042575421502,746489.0,5938355.0,Revisar en comité de rentabilidad,Pendiente
+2026-10,Off-Shore,PY_50105,Off-Shore Mensajeria Telco H,84936256.0,2629370.0,0.030956980255875653,-0.010874519828140293,Margen bajo,6.904301974412435,849363.0,5864256.0,Revisar en comité de rentabilidad,Pendiente

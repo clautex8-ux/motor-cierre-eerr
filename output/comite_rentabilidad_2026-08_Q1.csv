@@ -1,6 +1,4 @@
-Mes,LineaDeNegocio,CodigoProyecto,Proyecto,Ingresos De Explotacion,Resultado,MargenProyectado,Severidad,BrechaPP,UtilidadPorPunto,UtilidadEnJuego,Accion,Estado
-2026-08,Vtas_Servicios,PY_40104,Ventas Seguros Banco E,86999657.0,-7399769.0,-0.08505515142433262,Margen negativo,18.505515142433264,869997.0,16099735.0,Revisar en comité de rentabilidad,Pendiente
-2026-08,Off-Shore,PY_50106,Off-Shore Outbound Peru Telco H,69642785.0,-1209654.0,-0.017369408762156768,Margen negativo,11.736940876215678,696428.0,8173933.0,Revisar en comité de rentabilidad,Pendiente
-2026-08,Cobranza,PY_20104,Cobranza Castigo Retail D,82450895.0,-1216134.0,-0.014749797440039918,Margen negativo,11.474979744003992,824509.0,9461224.0,Revisar en comité de rentabilidad,Pendiente
-2026-08,Vtas_ATC,PY_30103,ATC Compra Cartera Retail D,70618066.0,1247452.0,0.017664771504787458,Margen bajo,8.233522849521254,706181.0,5814355.0,Revisar en comité de rentabilidad,Pendiente
-2026-08,Cobranza,PY_20105,Cobranza Telco F,125417567.0,5148890.0,0.04105397770951816,Margen bajo,5.894602229048185,1254176.0,7392867.0,Revisar en comité de rentabilidad,Pendiente
+Mes,LineaDeNegocio,CodigoProyecto,Proyecto,Ingresos De Explotacion,Resultado Operativo,MargenOperativo,MargenNeto,Severidad,BrechaPP,UtilidadPorPunto,UtilidadEnJuego,Accion,Estado
+2026-08,Vtas_Servicios,PY_40104,Ventas Seguros Banco E,86999657.0,-5768954.0,-0.06631007752134012,-0.08505515142433262,Margen negativo,16.631007752134014,869997.0,14468920.0,Revisar en comité de rentabilidad,Pendiente
+2026-08,Off-Shore,PY_50106,Off-Shore Outbound Peru Telco H,69642785.0,1560592.0,0.022408523725752784,-0.017369408762156768,Margen bajo,7.759147627424722,696428.0,5403687.0,Revisar en comité de rentabilidad,Pendiente
+2026-08,Cobranza,PY_20104,Cobranza Castigo Retail D,82450895.0,2097166.0,0.02543533335811576,-0.014749797440039918,Margen bajo,7.456466664188424,824509.0,6147924.0,Revisar en comité de rentabilidad,Pendiente

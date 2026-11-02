@@ -1,7 +1,5 @@
-Mes,LineaDeNegocio,CodigoProyecto,Proyecto,Ingresos De Explotacion,Resultado,MargenProyectado,Severidad,BrechaPP,UtilidadPorPunto,UtilidadEnJuego,Accion,Estado
-2026-05,Vtas_Servicios,PY_40104,Ventas Seguros Banco E,77985180.0,-7206778.0,-0.09241214805171957,Margen negativo,19.241214805171957,779852.0,15005296.0,Revisar en comité de rentabilidad,Pendiente
-2026-05,Off-Shore,PY_50106,Off-Shore Outbound Peru Telco H,69618950.0,-2705960.0,-0.038868152995700164,Margen negativo,13.886815299570015,696190.0,9667855.0,Revisar en comité de rentabilidad,Pendiente
-2026-05,Cobranza,PY_20104,Cobranza Castigo Retail D,72651210.0,-1202755.0,-0.016555195708371547,Margen negativo,11.655519570837155,726512.0,8467876.0,Revisar en comité de rentabilidad,Pendiente
-2026-05,Vtas_ATC,PY_30103,ATC Compra Cartera Retail D,67871629.0,-937218.0,-0.01380868580596467,Margen negativo,11.380868580596468,678716.0,7724381.0,Revisar en comité de rentabilidad,Pendiente
-2026-05,Off-Shore,PY_50104,Off-Shore Back Office Telco F,108253622.0,2432505.0,0.022470425977987138,Margen bajo,7.752957402201287,1082536.0,8392857.0,Revisar en comité de rentabilidad,Pendiente
-2026-05,Cobranza,PY_20105,Cobranza Telco F,130618240.0,6429819.0,0.049226042243411025,Margen bajo,5.077395775658898,1306182.0,6632005.0,Revisar en comité de rentabilidad,Pendiente
+Mes,LineaDeNegocio,CodigoProyecto,Proyecto,Ingresos De Explotacion,Resultado Operativo,MargenOperativo,MargenNeto,Severidad,BrechaPP,UtilidadPorPunto,UtilidadEnJuego,Accion,Estado
+2026-05,Vtas_Servicios,PY_40104,Ventas Seguros Banco E,77985180.0,-6076924.0,-0.07792408762793136,-0.09241214805171957,Margen negativo,17.792408762793137,779852.0,13875442.0,Revisar en comité de rentabilidad,Pendiente
+2026-05,Off-Shore,PY_50106,Off-Shore Outbound Peru Telco H,69618950.0,-730799.0,-0.010497127578051666,-0.038868152995700164,Margen negativo,11.049712757805167,696190.0,7692694.0,Revisar en comité de rentabilidad,Pendiente
+2026-05,Cobranza,PY_20104,Cobranza Castigo Retail D,72651210.0,1783289.0,0.024545895381508444,-0.016555195708371547,Margen bajo,7.545410461849156,726512.0,5481832.0,Revisar en comité de rentabilidad,Pendiente
+2026-05,Vtas_ATC,PY_30103,ATC Compra Cartera Retail D,67871629.0,1713721.0,0.025249445537840268,-0.01380868580596467,Margen bajo,7.475055446215974,678716.0,5073442.0,Revisar en comité de rentabilidad,Pendiente

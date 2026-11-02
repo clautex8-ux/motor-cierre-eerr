@@ -80,9 +80,10 @@ def procesar_mes(mes: str, carpeta_raw: Path | None = None, salida: Path | None 
         t = time.perf_counter()
         resumen = distribuir.resumen_por_proyecto(eerr)
         por_linea = resumen.groupby("LineaDeNegocio", as_index=False).sum(numeric_only=True)
+        por_linea["Margen Operativo %"] = por_linea["Resultado Operativo"] / por_linea["Ingresos De Explotacion"]
         por_linea["Margen %"] = por_linea["Resultado"] / por_linea["Ingresos De Explotacion"]
         rubros = [c for c in resumen.columns if c not in ("LineaDeNegocio", "CodigoProyecto",
-                                                           "Proyecto", "Margen %")]
+                                                           "Proyecto", "Margen Operativo %", "Margen %")]
         cuad_df = pd.DataFrame([{"Regla": c.regla, "FilasOrigen": c.filas_origen,
                                  "FilasDestino": c.filas_destino, "MontoOrigen": c.monto_origen,
                                  "MontoDestino": c.monto_destino, "Diferencia": c.diferencia}
@@ -96,8 +97,8 @@ def procesar_mes(mes: str, carpeta_raw: Path | None = None, salida: Path | None 
             **{f"Incumple {k}": v for k, v in calidad.por_regla.items()}}.items()])
 
         exportar.exportar_excel(salida / f"EERR_Distribuido_{mes}.xlsx", {
-            "Resumen_Linea": (por_linea, rubros, ["Margen %"]),
-            "EERR_Proyecto": (resumen, rubros, ["Margen %"]),
+            "Resumen_Linea": (por_linea, rubros, ["Margen Operativo %", "Margen %"]),
+            "EERR_Proyecto": (resumen, rubros, ["Margen Operativo %", "Margen %"]),
             "Alertas_Fuga": (alertas, ["Provision", "FacturadoNeto", "Monto"], []),
             "Conciliacion": (conc, ["PROVISION", "Facturado", "NotasCredito", "FacturadoNeto",
                                     "Diferencia"], ["DiferenciaPct"]),
@@ -117,7 +118,7 @@ def procesar_mes(mes: str, carpeta_raw: Path | None = None, salida: Path | None 
             comp = proyectar.comparar_con_cierre(pd.read_csv(ruta_proy), resumen)
             comp.assign(Mes=mes).to_csv(salida / f"precision_proyeccion_{mes}.csv", index=False)
             error_pp, acierto = round(comp["ErrorPP"].abs().mean(), 2), round(comp["Acierto"].mean(), 4)
-            log.info("%s | precisión proyección: error medio %.2f pp, acierto clasificación %.0f%%",
+            log.info("%s | precisión proyección (margen operativo): error medio %.2f pp, acierto clasificación %.0f%%",
                      mes, error_pp, 100 * acierto)
         tiempos["exportar"] = time.perf_counter() - t
 
@@ -180,19 +181,21 @@ def proyectar_mes(mes: str, carpeta_raw: Path | None = None, salida: Path | None
         resumen = distribuir.resumen_por_proyecto(eerr)
         comite = proyectar.alertas_rentabilidad(resumen, mes)
         tiempos["alertar"] = time.perf_counter() - t
-        log.info("%s Q1 | %d proyectos bajo margen mínimo; utilidad en juego %s", mes, len(comite),
+        log.info("%s Q1 | %d proyectos bajo margen operativo mínimo; utilidad en juego %s", mes, len(comite),
                  f"{comite['UtilidadEnJuego'].sum():,.0f}")
 
         t = time.perf_counter()
         por_linea = resumen.groupby("LineaDeNegocio", as_index=False).sum(numeric_only=True)
+        por_linea["Margen Operativo %"] = por_linea["Resultado Operativo"] / por_linea["Ingresos De Explotacion"]
         por_linea["Margen %"] = por_linea["Resultado"] / por_linea["Ingresos De Explotacion"]
-        rubros = [c for c in resumen.columns if c not in ("LineaDeNegocio", "CodigoProyecto", "Proyecto", "Margen %")]
+        rubros = [c for c in resumen.columns if c not in ("LineaDeNegocio", "CodigoProyecto", "Proyecto",
+                                                           "Margen Operativo %", "Margen %")]
         origen = base_proy.groupby(["EERR", "Origen"], as_index=False)["Saldo"].sum()
         exportar.exportar_excel(salida / f"Proyeccion_Cierre_{mes}_Q1.xlsx", {
-            "Comite_Rentabilidad": (comite, ["Ingresos De Explotacion", "Resultado", "UtilidadPorPunto",
-                                             "UtilidadEnJuego"], ["MargenProyectado"]),
-            "Proyeccion_Linea": (por_linea, rubros, ["Margen %"]),
-            "Proyeccion_Proyecto": (resumen, rubros, ["Margen %"]),
+            "Comite_Rentabilidad": (comite, ["Ingresos De Explotacion", "Resultado Operativo", "UtilidadPorPunto",
+                                             "UtilidadEnJuego"], ["MargenOperativo", "MargenNeto"]),
+            "Proyeccion_Linea": (por_linea, rubros, ["Margen Operativo %", "Margen %"]),
+            "Proyeccion_Proyecto": (resumen, rubros, ["Margen Operativo %", "Margen %"]),
             "Metodo_por_Rubro": (origen, ["Saldo"], []),
             "Cuarentena_Corte": (cuarentena, ["Debit", "Credit", "Saldo"], []),
             "Detalle_Proyectado": (eerr, ["Debit", "Credit", "Saldo"], []),

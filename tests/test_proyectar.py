@@ -53,18 +53,21 @@ def test_alertas_rentabilidad_solo_bajo_margen_minimo(proyeccion):
     r = cargar_reglas()["rentabilidad"]
     resumen = distribuir.resumen_por_proyecto(eerr)
     al = proyectar.alertas_rentabilidad(resumen, "2026-09")
-    assert (al["MargenProyectado"] < r["margen_minimo"]).all()
+    assert (al["MargenOperativo"] < r["margen_minimo"]).all()
+    # el neto queda como referencia y difiere del operativo (OH, no operacional, impuesto o crédito)
+    assert "MargenNeto" in al.columns and (al["MargenOperativo"] != al["MargenNeto"]).all()
     assert (al["UtilidadPorPunto"] == np.round(al["Ingresos De Explotacion"] * 0.01, 0)).all()
-    esperado = (r["margen_objetivo"] - al["MargenProyectado"]) * al["Ingresos De Explotacion"]
+    esperado = (r["margen_objetivo"] - al["MargenOperativo"]) * al["Ingresos De Explotacion"]
     assert (al["UtilidadEnJuego"] - esperado).abs().max() <= 1
     assert set(al["Severidad"]) <= {"Margen negativo", "Margen bajo"}
 
 
 def test_comparacion_con_cierre_calcula_error_y_acierto():
     proy = pd.DataFrame({"CodigoProyecto": ["A", "B"], "Proyecto": ["a", "b"], "LineaDeNegocio": ["BPO", "BPO"],
-                         "Ingresos De Explotacion": [100.0, 100.0], "Resultado": [12.0, 2.0]})
+                         "Ingresos De Explotacion": [100.0, 100.0], "Resultado Operativo": [12.0, 2.0],
+                         "Resultado": [6.0, -1.0]})
     real = pd.DataFrame({"CodigoProyecto": ["A", "B"], "Ingresos De Explotacion": [100.0, 100.0],
-                         "Resultado": [10.0, 6.0]})
+                         "Resultado Operativo": [10.0, 6.0], "Resultado": [5.0, 2.0]})
     c = proyectar.comparar_con_cierre(proy, real).set_index("CodigoProyecto")
     assert round(c.loc["A", "ErrorPP"], 6) == 2.0
     assert c.loc["A", "Acierto"] and not c.loc["B", "Acierto"]

@@ -1,4 +1,4 @@
-Mes,LineaDeNegocio,CodigoProyecto,Proyecto,Ingresos De Explotacion,Resultado,MargenProyectado,Severidad,BrechaPP,UtilidadPorPunto,UtilidadEnJuego,Accion,Estado
-2026-07,Vtas_Servicios,PY_40104,Ventas Seguros Banco E,87915366.0,-4307331.0,-0.048994063222122054,Margen negativo,14.899406322212204,879154.0,13098868.0,Revisar en comité de rentabilidad,Pendiente
-2026-07,Vtas_ATC,PY_30103,ATC Compra Cartera Retail D,68266274.0,-2364607.0,-0.034637997087698096,Margen negativo,13.46379970876981,682663.0,9191234.0,Revisar en comité de rentabilidad,Pendiente
-2026-07,Cobranza,PY_20104,Cobranza Castigo Retail D,83450821.0,-940297.0,-0.011267678241296153,Margen negativo,11.126767824129615,834508.0,9285379.0,Revisar en comité de rentabilidad,Pendiente
+Mes,LineaDeNegocio,CodigoProyecto,Proyecto,Ingresos De Explotacion,Resultado Operativo,MargenOperativo,MargenNeto,Severidad,BrechaPP,UtilidadPorPunto,UtilidadEnJuego,Accion,Estado
+2026-07,Vtas_Servicios,PY_40104,Ventas Seguros Banco E,87915366.0,-1478911.0,-0.016821985362604302,-0.048994063222122054,Margen negativo,11.682198536260431,879154.0,10270448.0,Revisar en comité de rentabilidad,Pendiente
+2026-07,Vtas_ATC,PY_30103,ATC Compra Cartera Retail D,68266274.0,-76162.0,-0.0011156607141031309,-0.034637997087698096,Margen negativo,10.111566071410314,682663.0,6902789.0,Revisar en comité de rentabilidad,Pendiente
+2026-07,Cobranza,PY_20104,Cobranza Castigo Retail D,83450821.0,2393221.0,0.028678219954241073,-0.011267678241296153,Margen bajo,7.132178004575892,834508.0,5951861.0,Revisar en comité de rentabilidad,Pendiente
