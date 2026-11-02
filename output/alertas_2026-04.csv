@@ -1,10 +1,10 @@
 CodigoProyecto,Proyecto,LineaDeNegocio,Cliente,Provision,FacturadoNeto,TipoAlerta,Monto,Responsable,Severidad,Estado,Mes
-PY_20103,Cobranza Leasing Banco E,Cobranza,Banco E,137857031.0,0.0,Provision sin factura,-137857031.0,Facturacion,Alta,Pendiente,2026-04
+PY_50104,Off-Shore Back Office Telco F,Off-Shore,Telco F,107011856.0,91144740.0,Facturado menor a provision,-15867116.0,Facturacion,Alta,Pendiente,2026-04
 PY_20101,Cobranza Temprana Banco A,Cobranza,Banco A,225292965.0,212975516.0,Facturado menor a provision,-12317449.0,Facturacion,Alta,Pendiente,2026-04
-PY_30101,ATC Tarjeta Retail D,Vtas_ATC,Retail D,249433291.0,236087645.0,Nota de credito no provisionada,-12295250.0,Comercial,Alta,Pendiente,2026-04
 PY_10101,BPO Back Office Banco A,BPO,Banco A,206745532.0,216780940.0,Facturado mayor a provision,10035408.0,Control de Gestion,Alta,Pendiente,2026-04
-PY_40102,Ventas Outbound Telco F,Vtas_Servicios,Telco F,157556944.0,167434881.0,Facturado mayor a provision,9877937.0,Control de Gestion,Media,Pendiente,2026-04
+PY_20103,Cobranza Leasing Banco E,Cobranza,Banco E,140943976.0,134900213.0,Nota de credito no provisionada,-6815273.0,Comercial,Media,Pendiente,2026-04
+PY_50103,Off-Shore Upselling Telco H,Off-Shore,Telco H,156664003.0,151713520.0,Nota de credito no provisionada,-4960824.0,Comercial,Media,Pendiente,2026-04
+PY_20104,Cobranza Castigo Retail D,Cobranza,Retail D,77694625.0,73058762.0,Nota de credito no provisionada,-4633290.0,Comercial,Media,Pendiente,2026-04
+PY_30102,ATC Retenciones Telco F,Vtas_ATC,Telco F,201878892.0,196905029.0,Nota de credito no provisionada,-4458203.0,Comercial,Media,Pendiente,2026-04
 PY_20102,Cobranza Judicial Financiera C,Cobranza,Financiera C,102263948.0,93797284.0,Nota de credito no provisionada,-4326107.0,Comercial,Media,Pendiente,2026-04
 PY_20102,Cobranza Judicial Financiera C,Cobranza,Financiera C,102263948.0,93797284.0,Facturado menor a provision,-4140557.0,Facturacion,Media,Pendiente,2026-04
-PY_10104,BPO Validacion Retail D,BPO,Retail D,57841528.0,61389600.0,Facturado mayor a provision,3548072.0,Control de Gestion,Media,Pendiente,2026-04
-PY_40104,Ventas Seguros Banco E,Vtas_Servicios,Banco E,72141017.0,70066904.0,Nota de credito no provisionada,-2010975.0,Comercial,Media,Pendiente,2026-04

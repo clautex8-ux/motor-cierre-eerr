@@ -1,0 +1,4 @@
+Mes,LineaDeNegocio,CodigoProyecto,Proyecto,Ingresos De Explotacion,Resultado,MargenProyectado,Severidad,BrechaPP,UtilidadPorPunto,UtilidadEnJuego,Accion,Estado
+2026-07,Off-Shore,PY_50106,Off-Shore Outbound Peru Telco H,69214099.0,-3441784.0,-0.049726631563895674,Margen negativo,14.972663156389569,692141.0,10363194.0,Revisar en comité de rentabilidad,Pendiente
+2026-07,Vtas_Servicios,PY_40104,Ventas Seguros Banco E,89089349.0,-3639545.0,-0.04085275109598118,Margen negativo,14.08527510959812,890893.0,12548480.0,Revisar en comité de rentabilidad,Pendiente
+2026-07,Cobranza,PY_20104,Cobranza Castigo Retail D,80028999.0,2866068.0,0.0358128682829083,Margen bajo,6.41871317170917,800290.0,5136832.0,Revisar en comité de rentabilidad,Pendiente

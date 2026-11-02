@@ -1,24 +1,24 @@
 MES,CAMPANA,PAIS,UN,PROVISION
 2026-04,BPO Back Office Banco A,CHL,BPO,206745532.0
 2026-04,BPO Digitalizacion Seguros B,CHL,BPO,113803470.0
-2026-04,BPO Digital Prendas FinC,CHL,BPO,169727781.0
-2026-04,BPO Validacion Retail D,CHL,BPO,57841528.0
+2026-04,BPO Digital Prendas FinC,CHL,BPO,166185529.0
+2026-04,BPO Validacion Retail D,CHL,BPO,63489113.0
 2026-04,Cobranza Temprana Banco A,CHL,Cobranza,225292965.0
 2026-04,Cobranza Judicial Financiera C,CHL,Cobranza,102263948.0
-2026-04,Cobranza Unidad Leasing E,CHL,Cobranza,137857031.0
+2026-04,Cobranza Unidad Leasing E,CHL,Cobranza,140943976.0
 2026-04,Cobranza Castigo Retail D,CHL,Cobranza,77694625.0
-2026-04,Cobranza Telco F,CHL,Cobranza,127682632.0
-2026-04,ATC Tarjeta D ventas,CHL,Vtas_ATC,249433291.0
-2026-04,ATC Retenciones Telco F,CHL,Vtas_ATC,164726236.0
-2026-04,ATC Compra Cartera Retail D,CHL,Vtas_ATC,68119878.0
-2026-04,ATC Seguros B,CHL,Vtas_ATC,91480009.0
-2026-04,Venta Inbound Fijo F,CHL,Vtas_Servicios,211838323.0
-2026-04,Ventas Outbound Telco F,CHL,Vtas_Servicios,157556944.0
-2026-04,Ventas Web Fijo Telco G,CHL,Vtas_Servicios,88908283.0
-2026-04,Ventas Seguros Banco E,CHL,Vtas_Servicios,72141017.0
-2026-04,Offshore Telco Retenciones H COL,COL,Off-Shore,281432103.0
-2026-04,Offshore Telco Cobranza H COL,COL,Off-Shore,180454612.0
-2026-04,Off-Shore Upselling Telco H,COL,Off-Shore,162651670.0
-2026-04,Off-Shore Back Office Telco F,COL,Off-Shore,111867391.0
-2026-04,Offshore Blip Mensajeria H,COL,Off-Shore,89014875.0
-2026-04,Off-Shore Outbound Peru Telco H,COL,Off-Shore,68095943.0
+2026-04,Cobranza Telco F,CHL,Cobranza,138138055.0
+2026-04,ATC Tarjeta D ventas,CHL,Vtas_ATC,256538639.0
+2026-04,ATC Retenciones Telco F,CHL,Vtas_ATC,201878892.0
+2026-04,ATC Compra Cartera Retail D,CHL,Vtas_ATC,78682306.0
+2026-04,ATC Seguros B,CHL,Vtas_ATC,79599788.0
+2026-04,Venta Inbound Fijo F,CHL,Vtas_Servicios,213059236.0
+2026-04,Ventas Outbound Telco F,CHL,Vtas_Servicios,164932860.0
+2026-04,Ventas Web Fijo Telco G,CHL,Vtas_Servicios,93294158.0
+2026-04,Ventas Seguros Banco E,CHL,Vtas_Servicios,86009113.0
+2026-04,Offshore Telco Retenciones H COL,COL,Off-Shore,289011359.0
+2026-04,Offshore Telco Cobranza H COL,COL,Off-Shore,186284710.0
+2026-04,Off-Shore Upselling Telco H,COL,Off-Shore,156664003.0
+2026-04,Off-Shore Back Office Telco F,COL,Off-Shore,107011856.0
+2026-04,Offshore Blip Mensajeria H,COL,Off-Shore,91766102.0
+2026-04,Off-Shore Outbound Peru Telco H,COL,Off-Shore,71697051.0

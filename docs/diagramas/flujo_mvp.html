@@ -21,18 +21,18 @@
   .cmd{margin-top:16px;background:#1F2430;color:#E8EAF2;border-radius:10px;padding:12px 16px;font-family:"DejaVu Sans Mono",monospace;font-size:14px;line-height:1.55}
   .cmd .c{color:#8E96B3}
 </style></head><body><div class="wrap">
-<h1>Operación del MVP: un comando cierra el mes y deja evidencia</h1>
-<div class="sub">Flujo del código en <code>src/motor/</code> · cada etapa es un módulo con pruebas automáticas</div>
+<h1>Operación del MVP: un comando por corte, dos cortes al mes</h1>
+<div class="sub">Flujo del código en <code>src/motor/</code> · día 15: proyección para el comité · fin de mes: cierre real y precisión de la proyección</div>
 <div class="row">
  <div class="step"><div class="t">ETAPA 1</div><b>Extraer</b><code>extraer.py</code><span>Lee base EERR, provisión, facturación y maestros</span></div><div class="arr">➜</div>
- <div class="step"><div class="t">ETAPA 2</div><b>Validar</b><code>validar.py</code><span>Normaliza, aplica 7 reglas, separa cuarentena</span></div><div class="arr">➜</div>
+ <div class="step"><div class="t">ETAPA 2</div><b>Validar · Proyectar</b><code>validar.py · proyectar.py</code><span>7 reglas; al día 15 escala variables y toma fijos del cierre anterior</span></div><div class="arr">➜</div>
  <div class="step key"><div class="t">ETAPA 3</div><b>Distribuir</b><code>distribuir.py</code><span>Prorrateo fila a fila con residuo; cuadra al peso</span></div><div class="arr">➜</div>
- <div class="step"><div class="t">ETAPA 4</div><b>Alertar</b><code>alertar.py</code><span>Provisión vs. facturación y notas de crédito</span></div><div class="arr">➜</div>
- <div class="step"><div class="t">ETAPA 5</div><b>Exportar</b><code>exportar.py</code><span>Excel IBR, tabla Power BI, CSV de alertas</span></div>
+ <div class="step"><div class="t">ETAPA 4</div><b>Alertar</b><code>proyectar.py · alertar.py</code><span>Margen bajo mínimo con utilidad en juego; fugas de ingreso</span></div><div class="arr">➜</div>
+ <div class="step"><div class="t">ETAPA 5</div><b>Exportar</b><code>exportar.py</code><span>Excel del comité o EERR de cierre, Power BI, log y precisión</span></div>
 </div>
 <div class="gate">
  <div class="g ok"><b>Si la cuadratura es $0 → corrida OK</b>Se publican las salidas y <code>logs/ejecuciones.csv</code> registra filas, % válidas, alertas y segundos por etapa.</div>
  <div class="g ko"><b>Si falta un archivo o la cuadratura no es $0 → corrida FALLIDA</b>No se publica ninguna salida; el error queda en el log y cuenta en el KPI IL4.</div>
 </div>
-<div class="cmd"><span class="c"># cierre de un mes, todos los meses y KPIs</span><br>python -m motor.pipeline --mes 2026-09<br>python -m motor.pipeline --todos<br>python -m motor.kpis</div>
+<div class="cmd"><span class="c"># día 15: proyección para el comité · fin de mes: cierre · todos los cortes · KPIs</span><br>python -m motor.pipeline --mes 2026-10 --corte Q1<br>python -m motor.pipeline --mes 2026-09<br>python -m motor.pipeline --todos<br>python -m motor.kpis</div>
 </div></body></html>

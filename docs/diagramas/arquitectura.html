@@ -21,43 +21,43 @@
   .num{display:inline-block;background:#1CADE4;color:#fff;border-radius:50%;width:22px;height:22px;text-align:center;font-size:14px;line-height:22px;margin-right:6px}
 </style></head><body><div class="wrap">
 <h1>Motor de cierre EERR: de bases manuales a un EERR distribuido y auditado</h1>
-<div class="sub">Arquitectura del producto de datos según las 7 capas · corre una vez por cierre mensual</div>
+<div class="sub">Arquitectura del producto de datos según las 7 capas · corre dos veces al mes: día 15 (proyección para el comité de rentabilidad) y cierre</div>
 
 <div class="capa"><div class="tag"><b><span class="num">2</span>Entradas</b><span>ERP + maestros</span></div>
  <div class="fila">
-  <div class="box"><b>Base EERR del ERP</b><span>CSV mensual, 27 columnas, ~6.400 filas (sintético)</span></div>
+  <div class="box"><b>Base EERR del ERP</b><span>Corte día 15 y cierre; 27 columnas, ~6.400 filas al mes</span></div>
   <div class="box"><b>Provisión de ingresos</b><span>Monto provisionado por campaña</span></div>
   <div class="box"><b>Facturación ERP</b><span>Facturas y notas de crédito por proyecto</span></div>
-  <div class="box"><b>Maestros y reglas</b><span>Proyectos, FTE, mapeo de campañas, reglas.yaml</span></div>
+  <div class="box"><b>Maestros y reglas</b><span>Proyectos, FTE, mapeo, umbrales de margen (reglas.yaml)</span></div>
  </div></div>
 <div class="flecha">▼</div>
 
 <div class="capa proc"><div class="tag"><b><span class="num">3</span>Procesamiento</b><span>Python · pandas</span></div>
  <div class="fila">
   <div class="box"><b>1 · Extraer</b><span>Lee y valida estructura; falla si falta una columna</span></div>
-  <div class="box"><b>2 · Validar (IL3)</b><span>7 reglas de calidad; corrige o envía a cuarentena</span></div>
+  <div class="box"><b>2 · Validar y proyectar</b><span>7 reglas de calidad; al día 15 proyecta el cierre (run-rate + referencia)</span></div>
   <div class="box key"><b>3 · Distribuir</b><span>Gerencias, STAFF por criterio, OH 3%, impuesto 27% RAI; cuadratura = $0</span></div>
-  <div class="box"><b>4 · Alertar</b><span>Concilia provisión vs. facturación; severidad y responsable</span></div>
+  <div class="box"><b>4 · Alertar</b><span>Proyectos bajo margen mínimo con utilidad en juego; fugas provisión vs. factura</span></div>
  </div></div>
 <div class="flecha">▼</div>
 
 <div class="capa"><div class="tag"><b><span class="num">4</span>Salidas</b><span>output/ · logs/</span></div>
  <div class="fila">
-  <div class="box"><b>EERR distribuido</b><span>Excel formato IBR: resumen, proyecto, detalle</span></div>
-  <div class="box"><b>Tabla Power BI</b><span>Hechos por movimiento para el informe EERR</span></div>
-  <div class="box"><b>Alertas de fuga</b><span>Lista priorizada por monto y severidad</span></div>
-  <div class="box"><b>Registro de ejecución</b><span>Estado, tiempos, calidad y cuadratura por corrida</span></div>
+  <div class="box"><b>Proyección de cierre (Q1)</b><span>Excel con lista del comité y EERR proyectado por proyecto</span></div>
+  <div class="box"><b>EERR distribuido (cierre)</b><span>Excel formato IBR + tabla para Power BI</span></div>
+  <div class="box"><b>Alertas</b><span>Rentabilidad (comité) y fugas de ingreso, con responsable</span></div>
+  <div class="box"><b>Registro y precisión</b><span>Log por corrida y error de la proyección vs. cierre</span></div>
  </div></div>
 <div class="flecha">▼</div>
 
 <div class="capa"><div class="tag"><b><span class="num">5</span>Consumo</b><span>quién decide</span></div>
  <div class="fila">
-  <div class="box"><b>Control de Gestión</b><span>Cierra el mes y revisa cuarentena y cuadratura</span></div>
-  <div class="box"><b>Gerencia de Finanzas</b><span>Decide por margen de campaña y línea</span></div>
-  <div class="box"><b>Facturación / Comercial</b><span>Emite o corrige facturas alertadas</span></div>
-  <div class="box"><b>Directorio</b><span>Recibe el EERR mensual sin rearmarlo a mano</span></div>
+  <div class="box"><b>Control de Gestión</b><span>Corre el día 15 y al cierre; revisa cuarentena y cuadratura</span></div>
+  <div class="box"><b>Comité de rentabilidad</b><span>Decide el día 18 acciones sobre proyectos con margen bajo</span></div>
+  <div class="box"><b>Gerencias de línea</b><span>Ejecutan las acciones (tarifa, dotación, mix) antes del cierre</span></div>
+  <div class="box"><b>Facturación / Directorio</b><span>Corrige facturas alertadas; recibe el EERR mensual</span></div>
  </div></div>
 
 <div class="mant"><div class="tag"><b><span class="num" style="background:#2B3990">6</span>Mantenimiento</b><span>cómo se sostiene</span></div>
- <div class="box">CI en GitHub Actions (lint + 16 pruebas + corrida de humo) · reglas versionadas en Git · log por corrida · dueño: Control de Gestión</div></div>
+ <div class="box">CI en GitHub Actions (lint + 23 pruebas + corrida de humo) · reglas versionadas en Git · log por corrida · dueño: Control de Gestión</div></div>
 </div></body></html>

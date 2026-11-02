@@ -81,6 +81,23 @@ alertas:
   tolerancia_pct: 0.02        # diferencia relativa tolerada
   tolerancia_monto: 500000    # diferencia mínima en CLP para alertar
 
+# Proyección de cierre al corte quincenal (día 15)
+proyeccion:
+  fraccion_quincena: 0.5                 # parte del mes transcurrida al corte
+  rubros_run_rate:                       # se proyectan a mes completo con lo contabilizado
+    - Costos Operacionales
+    - Costos Offshore Operacional
+    - No Operacional
+  rubros_referencia:                     # se toman del último cierre (fijos o se centralizan al cierre)
+    - Costos Del Personal
+    - Gastos Generales Fijos
+
+# Comité de rentabilidad: umbrales sobre el margen neto proyectado por proyecto
+rentabilidad:
+  margen_minimo: 0.05                    # bajo este margen el proyecto entra al comité
+  margen_objetivo: 0.10                  # meta de margen neto por proyecto
+  dias_comite: 18                        # día hábil en que sesiona el comité con la proyección
+
 # Línea base para KPI IL5 (proceso manual)
 linea_base_manual:
   dias_habiles_cierre: 5

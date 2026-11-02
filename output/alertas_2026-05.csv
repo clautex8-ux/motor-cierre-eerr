@@ -1,10 +1,8 @@
 CodigoProyecto,Proyecto,LineaDeNegocio,Cliente,Provision,FacturadoNeto,TipoAlerta,Monto,Responsable,Severidad,Estado,Mes
-PY_50102,Off-Shore Cobranza Telco H,Off-Shore,Telco H,220614955.0,0.0,Provision sin factura,-220614955.0,Facturacion,Alta,Pendiente,2026-05
-PY_10101,BPO Back Office Banco A,BPO,Banco A,214957272.0,0.0,Provision sin factura,-214957272.0,Facturacion,Alta,Pendiente,2026-05
-PY_40101,Ventas Inbound Telco F,Vtas_Servicios,Telco F,191564690.0,-11022938.0,Provision sin factura,-191564690.0,Facturacion,Alta,Pendiente,2026-05
-PY_30102,ATC Retenciones Telco F,Vtas_ATC,Telco F,189196801.0,156538002.0,Facturado menor a provision,-26399488.0,Facturacion,Alta,Pendiente,2026-05
-PY_40102,Ventas Outbound Telco F,Vtas_Servicios,Telco F,167588166.0,151566185.0,Facturado menor a provision,-16021981.0,Facturacion,Alta,Pendiente,2026-05
-PY_50101,Off-Shore Retenciones Telco H,Off-Shore,Telco H,286170514.0,276523723.0,Nota de credito no provisionada,-9017491.0,Comercial,Media,Pendiente,2026-05
-PY_30102,ATC Retenciones Telco F,Vtas_ATC,Telco F,189196801.0,156538002.0,Nota de credito no provisionada,-6259311.0,Comercial,Media,Pendiente,2026-05
-PY_20102,Cobranza Judicial Financiera C,Cobranza,Financiera C,96403768.0,90756563.0,Nota de credito no provisionada,-5405129.0,Comercial,Media,Pendiente,2026-05
-PY_10104,BPO Validacion Retail D,BPO,Retail D,61061173.0,57152510.0,Facturado menor a provision,-3908663.0,Facturacion,Media,Pendiente,2026-05
+PY_40104,Ventas Seguros Banco E,Vtas_Servicios,Banco E,79669456.0,-3363277.0,Provision sin factura,-79669456.0,Facturacion,Alta,Pendiente,2026-05
+PY_30101,ATC Tarjeta Retail D,Vtas_ATC,Retail D,258166399.0,225175051.0,Facturado menor a provision,-32991348.0,Facturacion,Alta,Pendiente,2026-05
+PY_40102,Ventas Outbound Telco F,Vtas_Servicios,Telco F,162329902.0,140199311.0,Facturado menor a provision,-22130591.0,Facturacion,Alta,Pendiente,2026-05
+PY_10101,BPO Back Office Banco A,BPO,Banco A,210157865.0,197217980.0,Facturado menor a provision,-12939885.0,Facturacion,Alta,Pendiente,2026-05
+PY_10103,BPO Prendas Financiera C,BPO,Financiera C,179283351.0,167157603.0,Facturado menor a provision,-12125748.0,Facturacion,Alta,Pendiente,2026-05
+PY_10104,BPO Validacion Retail D,BPO,Retail D,58796516.0,50151077.0,Facturado menor a provision,-8645439.0,Facturacion,Media,Pendiente,2026-05
+PY_40101,Ventas Inbound Telco F,Vtas_Servicios,Telco F,228433950.0,220035647.0,Nota de credito no provisionada,-7634445.0,Comercial,Media,Pendiente,2026-05

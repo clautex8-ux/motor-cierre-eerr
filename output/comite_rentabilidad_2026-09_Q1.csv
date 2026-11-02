@@ -1,0 +1,5 @@
+Mes,LineaDeNegocio,CodigoProyecto,Proyecto,Ingresos De Explotacion,Resultado,MargenProyectado,Severidad,BrechaPP,UtilidadPorPunto,UtilidadEnJuego,Accion,Estado
+2026-09,Vtas_Servicios,PY_40104,Ventas Seguros Banco E,78209488.0,-5309578.0,-0.06788917989080813,Margen negativo,16.788917989080815,782095.0,13130527.0,Revisar en comité de rentabilidad,Pendiente
+2026-09,Vtas_ATC,PY_30103,ATC Compra Cartera Retail D,70364590.0,-2009686.0,-0.028561041853580046,Margen negativo,12.856104185358005,703646.0,9046145.0,Revisar en comité de rentabilidad,Pendiente
+2026-09,Cobranza,PY_20104,Cobranza Castigo Retail D,86164584.0,2960777.0,0.03436187888982323,Margen bajo,6.563812111017678,861646.0,5655681.0,Revisar en comité de rentabilidad,Pendiente
+2026-09,Vtas_Servicios,PY_40103,Ventas Web Fijo Telco G,99787083.0,3502447.0,0.035099202168280635,Margen bajo,6.490079783171937,997871.0,6476261.0,Revisar en comité de rentabilidad,Pendiente

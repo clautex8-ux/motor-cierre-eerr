@@ -93,6 +93,10 @@ CUENTAS_COSTO = {
     ],
 }
 
+# Proyectos con margen estructuralmente bajo o negativo (caso típico que revisa el
+# comité de rentabilidad): margen objetivo antes de distribuciones corporativas
+MARGEN_DEBIL = {"PY_40104": 0.06, "PY_20104": 0.10, "PY_30103": 0.12, "PY_50106": 0.11}
+
 # Nombre de campaña en la provisión ≠ nombre en el ERP (caso real del cierre)
 ALIAS_PROVISION = {
     "PY_10103": "BPO Digital Prendas FinC",
@@ -187,7 +191,7 @@ def generar_mes(mes: str, rng: np.random.Generator, escala: float = 1_000_000):
                              "Monto": -round(ingreso * rng.uniform(0.02, 0.06), 0)})
 
         # Costos del proyecto
-        margen_obj = rng.uniform(0.20, 0.32)
+        margen_obj = MARGEN_DEBIL.get(cod, rng.uniform(0.22, 0.32)) + rng.normal(0, 0.015)
         costo_total = ingreso * (1 - margen_obj)
         mix = {"Costos Del Personal": 0.74, "Costos Operacionales": 0.14,
                "Gastos Generales Fijos": 0.10, "No Operacional": 0.02}
@@ -244,6 +248,43 @@ def generar_mes(mes: str, rng: np.random.Generator, escala: float = 1_000_000):
     return base, pd.DataFrame(provision), pd.DataFrame(facturas)
 
 
+# Qué fracción de cada rubro ya está contabilizada al corte de la primera quincena
+FRACCION_Q1 = {
+    "Ingresos De Explotacion": 1.00,        # la provisión del mes ya está completa
+    "Costos Operacionales": 0.50,
+    "Costos Offshore Operacional": 0.50,
+    "No Operacional": 0.45,
+    "Gastos Generales Fijos": 0.35,         # facturas de proveedores que ya llegaron
+    "Costos Del Personal": 0.00,            # la nómina se centraliza al cierre
+}
+
+
+def corte_quincenal(base: pd.DataFrame, rng: np.random.Generator) -> pd.DataFrame:
+    """Simula el extracto del ERP al día 15: solo lo contabilizado hasta esa fecha.
+
+    - Ingresos: la provisión mensual ya está completa.
+    - Rubros variables (operacionales, offshore, no operacional): cada proyecto lleva
+      consumida una fracción cercana a la mitad del mes, con dispersión propia.
+    - Gastos generales fijos: solo las facturas de proveedores ya recibidas.
+    - Costos del personal: la nómina se centraliza al cierre; no hay nada contabilizado.
+    """
+    partes = [base[base["EERR"] == "Ingresos De Explotacion"]]
+    variables = ["Costos Operacionales", "Costos Offshore Operacional", "No Operacional"]
+    var = base[base["EERR"].isin(variables)].copy()
+    factor = {k: FRACCION_Q1[k[1]] * rng.normal(1, 0.10)
+              for k in var.groupby(["CodigoProyecto", "EERR"]).size().index}
+    f = var.apply(lambda r: factor[(r["CodigoProyecto"], r["EERR"])], axis=1).clip(0.2, 0.9)
+    var["Saldo"] = np.round(var["Saldo"] * f, 0)
+    var["Debit"] = np.where(var["Saldo"] < 0, -var["Saldo"], 0.0)
+    var["Credit"] = np.where(var["Saldo"] > 0, var["Saldo"], 0.0)
+    partes.append(var)
+    ggf = base[base["EERR"] == "Gastos Generales Fijos"]
+    partes.append(ggf.sample(frac=FRACCION_Q1["Gastos Generales Fijos"], random_state=int(rng.integers(1 << 30))))
+    q1 = pd.concat(partes).sort_index()
+    q1["Fecha"] = q1["Mes"].str[:7] + "-15"
+    return q1
+
+
 def guardar_maestros(destino: Path):
     destino.mkdir(parents=True, exist_ok=True)
     proyectos = pd.DataFrame(PROYECTOS, columns=["CodigoProyecto", "Proyecto", "LineaDeNegocio",
@@ -266,6 +307,8 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--meses", nargs="+",
                     default=["2026-04", "2026-05", "2026-06", "2026-07", "2026-08", "2026-09"])
+    ap.add_argument("--mes-en-curso", default="2026-10",
+                    help="Mes del que solo existe el corte de la primera quincena")
     ap.add_argument("--semilla", type=int, default=42)
     ap.add_argument("--destino", default=str(RAIZ / "data"))
     a = ap.parse_args(argv)
@@ -276,13 +319,18 @@ def main(argv=None):
     destino = Path(a.destino)
     (destino / "raw").mkdir(parents=True, exist_ok=True)
     guardar_maestros(destino / "maestros")
-    for mes in a.meses:
+    for mes in a.meses + [a.mes_en_curso]:
         base, prov, fact = generar_mes(mes, rng)
-        base[reglas["columnas_base"]].to_csv(destino / "raw" / f"Base_EERR_{mes}.csv",
-                                             sep=sep, encoding=enc, index=False)
+        cols = reglas["columnas_base"]
+        q1 = corte_quincenal(base, rng)
+        q1[cols].to_csv(destino / "raw" / f"Base_EERR_{mes}_Q1.csv", sep=sep, encoding=enc, index=False)
         prov.to_csv(destino / "raw" / f"Provision_Ingresos_{mes}.csv", index=False)
+        if mes == a.mes_en_curso:          # mes en curso: aún no hay cierre ni facturación completa
+            print(f"{mes}: corte Q1 con {len(q1):,} filas (mes en curso, sin cierre)")
+            continue
+        base[cols].to_csv(destino / "raw" / f"Base_EERR_{mes}.csv", sep=sep, encoding=enc, index=False)
         fact.to_csv(destino / "raw" / f"Facturacion_{mes}.csv", index=False)
-        print(f"{mes}: {len(base):,} filas EERR | {len(prov)} campañas | {len(fact)} documentos")
+        print(f"{mes}: {len(base):,} filas EERR | corte Q1 {len(q1):,} filas | {len(fact)} documentos")
 
 
 if __name__ == "__main__":

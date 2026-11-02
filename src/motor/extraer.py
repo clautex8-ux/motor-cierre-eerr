@@ -23,15 +23,17 @@ def _ruta(carpeta: Path, nombre: str) -> Path:
     return ruta
 
 
-def leer_base_eerr(mes: str, carpeta: Path | None = None) -> pd.DataFrame:
+def leer_base_eerr(mes: str, carpeta: Path | None = None, corte: str | None = None) -> pd.DataFrame:
+    """Lee Base_EERR_<mes>.csv o, con corte="Q1", el extracto parcial Base_EERR_<mes>_Q1.csv."""
     reglas = cargar_reglas()
     carpeta = carpeta or RAIZ / "data" / "raw"
     fmt = reglas["formato_csv"]
-    df = pd.read_csv(_ruta(carpeta, f"Base_EERR_{mes}.csv"), sep=fmt["separador"],
+    nombre = f"Base_EERR_{mes}_{corte}.csv" if corte else f"Base_EERR_{mes}.csv"
+    df = pd.read_csv(_ruta(carpeta, nombre), sep=fmt["separador"],
                      encoding=fmt["encoding"], dtype=str, keep_default_na=False)
     faltantes = [c for c in reglas["columnas_base"] if c not in df.columns]
     if faltantes:
-        raise ErrorEntrada(f"Base_EERR_{mes}: faltan columnas {faltantes}")
+        raise ErrorEntrada(f"{nombre}: faltan columnas {faltantes}")
     for c in ("Debit", "Credit", "Saldo"):
         df[c] = pd.to_numeric(df[c].str.replace(",", ".", regex=False), errors="coerce")
     return df

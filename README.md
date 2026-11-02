@@ -1,8 +1,14 @@
 # Motor de cierre EERR con alertas de fuga de ingresos
 
-Producto de datos que automatiza el cierre mensual del Estado de Resultados (EERR) de una empresa BPO multipaís:
-consolida la base contable del ERP, valida su calidad, distribuye gerencias, áreas STAFF, OH Latam e impuesto a cada
-proyecto con cuadratura exacta, y alerta las diferencias entre ingreso provisionado y facturado.
+Producto de datos que automatiza el cierre del Estado de Resultados (EERR) por proyecto de una empresa BPO multipaís
+y corre **dos veces al mes**:
+
+- **Día 15 (corte Q1):** proyecta el cierre del mes con lo contabilizado a la fecha y entrega al **comité de
+  rentabilidad** la lista de proyectos con margen negativo o bajo el mínimo, con la utilidad en juego de cada uno,
+  para tomar acciones antes de que termine el mes.
+- **Cierre:** consolida la base contable, valida su calidad, distribuye gerencias, STAFF, OH Latam e impuesto a cada
+  proyecto con cuadratura exacta, alerta las diferencias entre ingreso provisionado y facturado y mide la precisión
+  de la proyección quincenal.
 
 **Autor:** Claudio Choque Peña · Proyecto final individual · Diploma Ciencia de Datos para las Finanzas, FEN U. de Chile
 
@@ -18,10 +24,12 @@ proyecto con cuadratura exacta, y alerta las diferencias entre ingreso provision
 pip install -r requirements.txt
 export PYTHONPATH=src            # en Windows: set PYTHONPATH=src
 
-python -m motor.generar_datos    # 6 meses sintéticos (abr–sep 2026) en data/raw
-python -m motor.pipeline --todos # cierra todos los meses
-python -m motor.kpis             # KPIs IL3, IL4, IL5 -> output/kpis_producto.csv
-python -m pytest -q              # 16 pruebas de calidad y cuadratura
+python -m motor.generar_datos              # 6 cierres (abr–sep 2026) + cortes Q1 (may–oct) en data/raw
+python -m motor.pipeline --mes 2026-10 --corte Q1   # proyección del día 15 para el comité
+python -m motor.pipeline --mes 2026-09              # cierre mensual
+python -m motor.pipeline --todos                    # todos los cortes y cierres
+python -m motor.kpis                                # KPIs IL3, IL4, IL5 -> output/kpis_producto.csv
+python -m pytest -q                                 # 23 pruebas de calidad, cuadratura y proyección
 ```
 
 Con `make`: `make datos`, `make cierre`, `make mes MES=2026-09`, `make kpis`, `make test`, `make lint`.
@@ -37,6 +45,7 @@ motor-cierre-eerr/
 ├── src/motor/
 │   ├── extraer.py              # capa de entrada: lectura y contrato de estructura
 │   ├── validar.py              # capa de calidad (IL3): normalización, 7 reglas, cuarentena
+│   ├── proyectar.py            # proyección de cierre al día 15 y alertas de rentabilidad
 │   ├── distribuir.py           # reglas de distribución con cuadratura exacta
 │   ├── alertar.py              # conciliación provisión vs. facturación
 │   ├── exportar.py             # Excel formato IBR y tabla para Power BI
@@ -46,8 +55,10 @@ motor-cierre-eerr/
 ├── tests/                      # pytest: validación, distribución, alertas, punta a punta
 ├── logs/
 │   ├── ejecuciones.csv         # una fila por corrida: estado, tiempos, calidad, cuadratura, alertas
-│   └── seguimiento_productividad.csv  # horas de cierre por mes (seguimiento IL5)
-├── output/                     # EERR_Distribuido_AAAA-MM.xlsx, alertas, powerbi/, kpis_producto.csv
+│   ├── seguimiento_productividad.csv  # horas de cierre por mes (IL5 secundario)
+│   └── seguimiento_comite.csv  # proyectos intervenidos por el comité y margen posterior (IL5 principal)
+├── output/                     # Proyeccion_Cierre_AAAA-MM_Q1.xlsx, EERR_Distribuido_AAAA-MM.xlsx,
+│                               # comite_rentabilidad_*, precision_proyeccion_*, alertas_*, powerbi/, kpis
 ├── docs/                       # diagramas (HTML -> PNG) y gráficos del informe
 └── .github/workflows/ci.yml    # CI: ruff + pytest + corrida de humo en cada push
 ```
@@ -65,6 +76,22 @@ La distribución es fila a fila: cada fila origen se reemplaza por N filas desti
 contable y quedan marcadas en la columna `Cross` (`Cross_gerencia`, `Cross_STAFF`, `Calculo_OH`, `Calculo_Impuesto`).
 El redondeo es a pesos y el residuo va al destino de mayor base: **la cuadratura contra el origen es siempre $0**, y si no
 lo es la corrida falla sin publicar salidas.
+
+## Proyección quincenal y comité de rentabilidad
+
+Al día 15 el ERP solo tiene parte del mes contabilizada. El motor construye una base proyectada a mes completo y la
+distribuye con las mismas reglas del cierre:
+
+| Rubro | Método al corte Q1 |
+|---|---|
+| Ingresos de explotación | La provisión del mes ya está completa: se toma tal cual |
+| Costos operacionales, offshore, no operacional | Run-rate: lo contabilizado ÷ fracción del mes transcurrida (0,5) |
+| Costos del personal, gastos generales fijos | Referencia: se toman del último cierre del mismo proyecto |
+
+Los proyectos cuyo margen neto proyectado queda bajo `rentabilidad.margen_minimo` (5%) entran a la hoja
+`Comite_Rentabilidad` con severidad (negativo / bajo), brecha en puntos hasta el objetivo (10%), **utilidad por punto**
+(1% de sus ingresos) y **utilidad en juego** (brecha × ingresos). Al cierre, `precision_proyeccion_*.csv` compara el
+margen proyectado con el real por proyecto (error en pp y acierto de la clasificación).
 
 ## Contrato de datos (IL3)
 
@@ -86,14 +113,18 @@ Las filas en cuarentena quedan en la hoja `Cuarentena` del Excel con su motivo, 
 |---|---|---|
 | IL3 | % de filas con proyecto, línea y cuenta válidos | ≥ 99,5% |
 | IL3 | Diferencia de cuadratura origen vs. distribuido | $0 |
-| IL4 | % de ejecuciones mensuales sin error | ≥ 99% |
-| IL4 | Tiempo de ejecución por cierre | < 60 s |
-| IL5 | Horas de cierre por mes (40 h manual → meta 16 h) | ahorro ≥ 24 h/mes |
-| IL5 | Aumento de productividad del cierre (horas ahorradas / horas base) | ≥ 60% |
+| IL4 | % de ejecuciones sin error (cortes Q1 + cierres) | ≥ 99% |
+| IL4 | Error medio de la proyección de margen vs. cierre | ≤ 5 pp |
+| IL4 | Acierto al clasificar proyectos bajo margen mínimo | ≥ 85% |
+| IL5 | Puntos de margen recuperados en proyectos intervenidos por el comité | ≥ 3 pp |
+| IL5 | Utilidad adicional por intervenciones (puntos recuperados × ingresos) | > 0 |
+| IL5 | Horas de cierre por mes (40 h manual → meta 16 h), secundario | ahorro ≥ 24 h/mes |
 
-El IL5 se mide con `logs/seguimiento_productividad.csv`: Control de Gestión registra las horas efectivas de cada cierre
-con el motor; `motor.kpis` compara contra la línea base manual y marca el KPI como *Pendiente* mientras no haya
-mediciones reales.
+**Lógica del IL5.** Cada punto de margen que un proyecto mejora equivale al 1% de sus ingresos en utilidad adicional;
+sobre la cartera completa, un punto vale 1% de los ingresos mensuales. El comité registra en
+`logs/seguimiento_comite.csv` los proyectos intervenidos, su margen proyectado y el margen real del cierre siguiente;
+`motor.kpis` calcula los puntos recuperados y la utilidad generada, y marca el KPI como *Pendiente* mientras no haya
+cierres posteriores a la intervención.
 
 ## Mantenimiento
 
@@ -101,4 +132,5 @@ mediciones reales.
 - **CI:** cada push ejecuta lint, pruebas de cuadratura y una corrida de humo; el Excel resultante queda como artefacto.
 - **Monitoreo:** `logs/ejecuciones.csv` y `logs/motor.log` registran cada corrida; `motor.kpis` resume el estado.
 - **Responsable:** Jefe de Control de Gestión (dueño del producto y de las reglas).
+- **Calendario:** día 15 corte Q1 → día 18 comité de rentabilidad → cierre mensual con medición de precisión.
 - **Próximo paso:** reemplazar la lectura de CSV por extracción SuiteQL directa del ERP cuando TI habilite el acceso.

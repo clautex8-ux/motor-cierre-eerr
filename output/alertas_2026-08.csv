@@ -1,4 +1,7 @@
 CodigoProyecto,Proyecto,LineaDeNegocio,Cliente,Provision,FacturadoNeto,TipoAlerta,Monto,Responsable,Severidad,Estado,Mes
-PY_20101,Cobranza Temprana Banco A,Cobranza,Banco A,256341567.0,272448564.0,Facturado mayor a provision,16106997.0,Control de Gestion,Alta,Pendiente,2026-08
-PY_50103,Off-Shore Upselling Telco H,Off-Shore,Telco H,160388756.0,173005168.0,Facturado mayor a provision,12616412.0,Control de Gestion,Alta,Pendiente,2026-08
-PY_50106,Off-Shore Outbound Peru Telco H,Off-Shore,Telco H,75662417.0,73436626.0,Nota de credito no provisionada,-2430321.0,Comercial,Media,Pendiente,2026-08
+PY_10101,BPO Back Office Banco A,BPO,Banco A,227201453.0,0.0,Provision sin factura,-227201453.0,Facturacion,Alta,Pendiente,2026-08
+PY_40101,Ventas Inbound Telco F,Vtas_Servicios,Telco F,260538238.0,246069937.0,Nota de credito no provisionada,-14918634.0,Comercial,Alta,Pendiente,2026-08
+PY_10102,BPO Digitalizacion Seguros B,BPO,Seguros B,113246749.0,99896552.0,Facturado menor a provision,-13350197.0,Facturacion,Alta,Pendiente,2026-08
+PY_50101,Off-Shore Retenciones Telco H,Off-Shore,Telco H,321483542.0,307714730.0,Nota de credito no provisionada,-13075628.0,Comercial,Alta,Pendiente,2026-08
+PY_30104,ATC Seguros B,Vtas_ATC,Seguros B,90448953.0,85222561.0,Facturado menor a provision,-5226392.0,Facturacion,Media,Pendiente,2026-08
+PY_50105,Off-Shore Mensajeria Telco H,Off-Shore,Telco H,100649714.0,95830244.0,Nota de credito no provisionada,-4566385.0,Comercial,Media,Pendiente,2026-08
